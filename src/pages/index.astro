@@ -33,7 +33,7 @@ import "../styles/global.css";
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">Google Ads viability calculator</p>
         <h1 id="page-title">
-          Google Ads est-il rentable pour votre activité ?
+          Google Ads peut-il être rentable pour votre activité ?
         </h1>
         <p class="hero-copy">
           Estimez le budget, le trafic et le nombre de prospects nécessaires<br
@@ -45,8 +45,8 @@ import "../styles/global.css";
       <section class="tool-intro" aria-label="Déroulement du calculateur">
         <p><strong>4 étapes · environ 3 minutes.</strong></p>
         <p>
-          Vous partez de la valeur d’un client, puis précisez votre objectif,
-          votre transformation commerciale et vos hypothèses Google Ads.
+          Partez de vos chiffres actuels pour estimer si Google Ads peut
+          soutenir votre objectif de vente.
         </p>
       </section>
 
@@ -114,7 +114,10 @@ import "../styles/global.css";
                   >600 € de chiffre d’affaires</strong
                 >, dont <strong>180 € de marge</strong>.
               </p>
-              <small>Valeur moyenne d’un client · Marge par client</small>
+              <div class="summary-metrics">
+                <div><strong>600 €</strong><small>CA moyen par client</small></div>
+                <div><strong>180 €</strong><small>Marge brute par client</small></div>
+              </div>
             </div>
           </section>
 
@@ -144,7 +147,7 @@ import "../styles/global.css";
                 >
               </label>
               <label class="field">
-                <span>Périodicité</span>
+                <span>Période</span>
                 <small
                   >À quel rythme souhaitez-vous atteindre cet objectif ?</small
                 >
@@ -154,19 +157,18 @@ import "../styles/global.css";
                 >
               </label>
               <label class="field field-wide">
-                <span>Part de la marge à conserver</span>
+                <span>Marge minimale par client</span>
                 <small
-                  >Quelle part de la marge souhaitez-vous garder après les
-                  dépenses publicitaires ?</small
+                  >Quelle marge souhaitez-vous conserver au minimum après
+                  l’acquisition d’un nouveau client ?</small
                 >
                 <span class="input-shell"
                   ><input
                     type="number"
-                    value="70"
+                    value="120"
                     min="0"
-                    max="100"
                     inputmode="decimal"
-                  /><span class="unit">%</span></span
+                  /><span class="unit">€</span></span
                 >
               </label>
             </div>
@@ -177,15 +179,18 @@ import "../styles/global.css";
                 > et <strong>1 800 € de marge avant publicité</strong>.
               </p>
               <p>
-                En conservant <strong>70 % de la marge</strong>, vous pouvez
-                consacrer jusqu’à <strong>54 €</strong> à l’acquisition de chaque
-                nouveau client.
+                En conservant au moins <strong>120 € par client</strong>, votre
+                marge totale estimée après publicité serait de <strong
+                  >1 200 €</strong
+                >. Vous pouvez consacrer jusqu’à <strong>60 €</strong> à
+                l’acquisition d’un nouveau client pour conserver cette marge.
               </p>
-              <small>Coût d’acquisition maximal · CPA</small>
-              <p class="summary-note">
-                Soit un budget d’acquisition maximal de <strong>540 €</strong> sur
-                la période.
-              </p>
+              <div class="summary-metrics">
+                <div><strong>120 €</strong><small>Marge cible par client</small></div>
+                <div><strong>60 €</strong><small>CPA maximal</small></div>
+                <div><strong>1 200 €</strong><small>Marge cible après acquisition</small></div>
+                <div><strong>600 €</strong><small>Budget média maximal</small></div>
+              </div>
             </div>
           </section>
 
@@ -193,7 +198,7 @@ import "../styles/global.css";
             <div class="step-heading">
               <span class="step-number">03</span>
               <div>
-                <h2 id="step-3-title">Votre transformation commerciale</h2><p>
+                <h2 id="step-3-title">De la demande au client</h2><p>
                   Toutes les personnes réellement intéressées ne deviennent pas
                   clientes. Prenons cette réalité en compte.
                 </p>
@@ -201,7 +206,7 @@ import "../styles/global.css";
             </div>
             <div class="fields">
               <label class="field">
-                <span>Taux de transformation commerciale</span>
+                <span>Taux de conversion des prospects en clients</span>
                 <small
                   >Sur 10 personnes réellement intéressées, combien deviennent
                   clientes ?</small
@@ -222,7 +227,10 @@ import "../styles/global.css";
                 Pour obtenir <strong>10 nouveaux clients</strong>, il faudrait
                 environ <strong>100 personnes intéressées</strong>.
               </p>
-              <small>Prospects nécessaires</small>
+              <div class="summary-metrics">
+                <div><strong>10 %</strong><small>Taux de closing</small></div>
+                <div><strong>100</strong><small>Leads requis</small></div>
+              </div>
             </div>
           </section>
 
@@ -230,7 +238,7 @@ import "../styles/global.css";
             <div class="step-heading">
               <span class="step-number">04</span>
               <div>
-                <h2 id="step-4-title">Votre acquisition Google Ads</h2><p>
+                <h2 id="step-4-title">Google Ads</h2><p>
                   Relions maintenant votre objectif commercial au trafic
                   nécessaire pour l’atteindre.
                 </p>
@@ -238,7 +246,7 @@ import "../styles/global.css";
             </div>
             <div class="fields two-columns">
               <label class="field">
-                <span>Taux de transformation de la page</span>
+                <span>Taux de conversion de la page</span>
                 <small
                   >Sur 100 visiteurs de votre page, combien prennent contact ?</small
                 >
@@ -255,8 +263,8 @@ import "../styles/global.css";
               <label class="field">
                 <span>Coût estimé par clic</span>
                 <small
-                  >Combien pensez-vous payer lorsqu’une personne clique sur
-                  votre annonce ?</small
+                  >Combien pensez-vous payer en moyenne lorsqu’une personne
+                  clique sur votre annonce ?</small
                 >
                 <span class="input-shell"
                   ><input
@@ -274,7 +282,7 @@ import "../styles/global.css";
             >
             <div class="section-summary">
               <p>
-                Avec un taux de transformation de <strong>5 %</strong>, il
+                Avec un taux de conversion de <strong>5 %</strong>, il
                 faudrait environ <strong>2 000 clics</strong> pour générer 100 prises
                 de contact.
               </p>
@@ -282,7 +290,13 @@ import "../styles/global.css";
                 À <strong>2,50 € par clic</strong>, le budget publicitaire
                 estimé serait de <strong>5 000 €</strong>.
               </p>
-              <small>CPC estimé · Budget média estimé</small>
+              <div class="summary-metrics">
+                <div><strong>5 %</strong><small>CVR landing page</small></div>
+                <div><strong>2,50 €</strong><small>CPC estimé</small></div>
+                <div><strong>50 €</strong><small>CPL estimé</small></div>
+                <div><strong>2 000</strong><small>Clics requis</small></div>
+                <div><strong>5 000 €</strong><small>Budget média estimé</small></div>
+              </div>
             </div>
           </section>
 
@@ -296,7 +310,7 @@ import "../styles/global.css";
               intéressant.
             </h2>
             <p class="result-reason">
-              Votre objectif permet de consacrer environ <strong>540 €</strong> à
+              Votre objectif permet de consacrer environ <strong>600 €</strong> à
               l’acquisition de 10 nouveaux clients, alors que le trafic nécessaire
               coûterait environ <strong>5 000 €</strong>.
             </p>
@@ -307,7 +321,7 @@ import "../styles/global.css";
               </div>
               <span class="comparison-word">contre</span>
               <div>
-                <strong>54 €</strong><span>coût maximal acceptable</span>
+                <strong>60 €</strong><span>coût maximal acceptable</span>
               </div>
             </div>
             <div class="result-metrics">
@@ -328,7 +342,7 @@ import "../styles/global.css";
               intéressant.
             </h2>
             <p class="result-reason">
-              Votre objectif permet de consacrer environ <strong>540 €</strong> à
+              Votre objectif permet de consacrer environ <strong>600 €</strong> à
               l’acquisition de 10 nouveaux clients, alors que le trafic nécessaire
               coûterait environ <strong>5 000 €</strong>.
             </p>
@@ -339,7 +353,7 @@ import "../styles/global.css";
               </div>
               <span class="comparison-word">contre</span>
               <div>
-                <strong>54 €</strong><span>coût maximal acceptable</span>
+                <strong>60 €</strong><span>coût maximal acceptable</span>
               </div>
             </div>
             <div class="result-metrics">
@@ -385,7 +399,7 @@ import "../styles/global.css";
             </li>
             <li>
               <span>03</span><p>
-                <strong>Transformation commerciale</strong>Part des personnes
+                <strong>Conversion commerciale</strong>Part des personnes
                 intéressées qui deviennent réellement clientes.
               </p>
             </li>
