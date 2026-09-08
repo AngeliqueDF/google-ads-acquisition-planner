@@ -1,43 +1,298 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>Google Ads Calculator</title>
-	</head>
-	<body>
-		<main>
-			<h1>Google Ads Calculator</h1>
-			<p>Simulateur et calculateur d'estimations pour campagnes Google Ads.</p>
-		</main>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Estimez les clics, les leads et le budget nécessaires pour évaluer la viabilité de Google Ads."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Google Ads peut-il être rentable ? — Calculateur</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Accueil Google Ads Calculator">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Ads / Calculator</span>
+      </a>
+      <span class="header-note">Outil gratuit · Sans inscription</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Google Ads viability calculator</p>
+        <h1 id="page-title">
+          Google Ads peut-il être rentable pour votre activité ?
+        </h1>
+        <p class="hero-copy">
+          Estimez le nombre de clics, de leads et le budget nécessaires<br
+            class="desktop-only"
+          /> à partir de vos objectifs commerciaux.
+        </p>
+      </section>
+
+      <div class="calculator-layout">
+        <form
+          class="calculator"
+          aria-label="Hypothèses de votre scénario Google Ads"
+        >
+          <section class="step" aria-labelledby="step-1-title">
+            <div class="step-heading">
+              <span class="step-number">01</span>
+              <div>
+                <h2 id="step-1-title">Votre objectif</h2><p>
+                  On part de votre objectif commercial, pas du budget
+                  publicitaire.
+                </p>
+              </div>
+            </div>
+            <div class="fields two-columns">
+              <label class="field">
+                <span>Valeur d’un nouveau client</span>
+                <span class="input-shell"
+                  ><input
+                    type="number"
+                    value="600"
+                    min="0"
+                    inputmode="decimal"
+                  /><span class="unit">€</span></span
+                >
+                <small>Chiffre d’affaires moyen généré.</small>
+              </label>
+              <label class="field">
+                <span>Nouveaux clients visés</span>
+                <span class="input-shell"
+                  ><input
+                    type="number"
+                    value="10"
+                    min="1"
+                    inputmode="numeric"
+                  /><span class="unit">clients</span></span
+                >
+                <small>Votre objectif sur la période.</small>
+              </label>
+              <label class="field field-wide">
+                <span>Période</span>
+                <select
+                  ><option>Par mois</option><option>Par trimestre</option
+                  ><option>Par an</option></select
+                >
+              </label>
+            </div>
+            <div class="inline-result">
+              <span>CPA maximum acceptable</span><strong>180 €</strong>
+            </div>
+          </section>
+
+          <section class="step" aria-labelledby="step-2-title">
+            <div class="step-heading">
+              <span class="step-number">02</span>
+              <div>
+                <h2 id="step-2-title">Votre processus commercial</h2><p>
+                  Ces données déterminent combien un lead peut raisonnablement
+                  vous coûter.
+                </p>
+              </div>
+            </div>
+            <div class="fields two-columns">
+              <label class="field">
+                <span>Taux de closing</span>
+                <span class="input-shell"
+                  ><input
+                    type="number"
+                    value="10"
+                    min="0"
+                    max="100"
+                    inputmode="decimal"
+                  /><span class="unit">%</span></span
+                >
+                <small>Part des leads qui deviennent clients.</small>
+              </label>
+              <label class="field">
+                <span>Marge moyenne</span>
+                <span class="input-shell"
+                  ><input
+                    type="number"
+                    value="30"
+                    min="0"
+                    max="100"
+                    inputmode="decimal"
+                  /><span class="unit">%</span></span
+                >
+                <small>Ce qu’il reste après vos coûts directs.</small>
+              </label>
+            </div>
+            <div class="inline-result">
+              <span>Valeur maximale d’un lead</span><strong>18 €</strong>
+            </div>
+          </section>
+
+          <section class="step" aria-labelledby="step-3-title">
+            <div class="step-heading">
+              <span class="step-number">03</span>
+              <div>
+                <h2 id="step-3-title">Votre acquisition</h2><p>
+                  Si vous ne connaissez pas encore ces chiffres, testez
+                  plusieurs hypothèses.
+                </p>
+              </div>
+            </div>
+            <div class="fields two-columns">
+              <label class="field">
+                <span>Taux de conversion</span>
+                <span class="input-shell"
+                  ><input
+                    type="number"
+                    value="5"
+                    min="0"
+                    max="100"
+                    inputmode="decimal"
+                  /><span class="unit">%</span></span
+                >
+                <small>Part des visiteurs qui deviennent leads.</small>
+              </label>
+              <label class="field">
+                <span>CPC estimé</span>
+                <span class="input-shell"
+                  ><input
+                    type="number"
+                    value="2.50"
+                    min="0"
+                    step="0.1"
+                    inputmode="decimal"
+                  /><span class="unit">€</span></span
+                >
+                <small>Combien vous pensez payer pour un clic.</small>
+              </label>
+            </div>
+            <button class="helper-link" type="button"
+              ><span aria-hidden="true">?</span> Je ne connais pas ce chiffre</button
+            >
+          </section>
+
+          <section
+            class="mobile-result result-box"
+            aria-label="Résumé du scénario"
+          >
+            <p class="result-kicker">Votre scénario</p>
+            <div class="result-comparison">
+              <div><span>Coût estimé par lead</span><strong>50 €</strong></div>
+              <div><span>Maximum recommandé</span><strong>18 €</strong></div>
+            </div>
+            <p class="verdict">
+              <span></span> Ce scénario n’est pas encore viable.
+            </p>
+            <div class="result-metrics">
+              <p><strong>100</strong><span>leads nécessaires</span></p>
+              <p><strong>2 000</strong><span>clics estimés</span></p>
+              <p><strong>5 000 €</strong><span>de budget média</span></p>
+            </div>
+          </section>
+        </form>
+
+        <aside class="result-panel" aria-label="Résumé du scénario">
+          <div class="result-box">
+            <p class="result-kicker">Votre scénario</p>
+            <div class="result-comparison">
+              <div><span>Coût estimé par lead</span><strong>50 €</strong></div>
+              <div><span>Maximum recommandé</span><strong>18 €</strong></div>
+            </div>
+            <p class="verdict">
+              <span></span> Ce scénario n’est pas encore viable.
+            </p>
+            <div class="result-metrics">
+              <p><strong>100</strong><span>leads nécessaires</span></p>
+              <p><strong>2 000</strong><span>clics estimés</span></p>
+              <p><strong>5 000 €</strong><span>de budget média</span></p>
+            </div>
+            <p class="result-footnote">
+              Ajustez vos hypothèses pour rapprocher le coût estimé du maximum
+              recommandé.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <section class="method" aria-labelledby="method-title">
+        <div>
+          <p class="eyebrow">La logique derrière le résultat</p><h2
+            id="method-title"
+          >
+            Un modèle simple,<br />pour décider plus clairement.
+          </h2>
+        </div>
+        <div class="method-copy">
+          <p>
+            Le calcul part de la valeur créée par un client et remonte jusqu’au
+            coût que vous pouvez accepter pour générer un clic.
+          </p>
+          <ol>
+            <li>
+              <span>01</span><p>
+                <strong>Objectif commercial</strong>Valeur client, marge et
+                nombre de clients souhaités.
+              </p>
+            </li>
+            <li>
+              <span>02</span><p>
+                <strong>Réalité de la vente</strong>Votre closing détermine
+                combien de leads seront nécessaires.
+              </p>
+            </li>
+            <li>
+              <span>03</span><p>
+                <strong>Hypothèse média</strong>Conversion et CPC permettent
+                d’estimer le volume et le budget.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-title">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 id="faq-title">Avant de lancer vos campagnes</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Où trouver une estimation du CPC&nbsp;?</summary><p>
+              Utilisez le planificateur de mots-clés Google Ads ou partez d’une
+              hypothèse prudente, puis testez plusieurs scénarios.
+            </p>
+          </details>
+          <details>
+            <summary>Que signifie « scénario limite »&nbsp;?</summary><p>
+              Votre coût estimé est proche du maximum acceptable. Une campagne
+              peut fonctionner, mais elle laisse peu de marge aux imprévus.
+            </p>
+          </details>
+          <details>
+            <summary
+              >Ces résultats garantissent-ils la rentabilité&nbsp;?</summary
+            ><p>
+              Non. Ils servent à cadrer une décision. Les résultats réels
+              dépendront notamment de votre marché, de vos annonces et de votre
+              landing page.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="/">Ads / Calculator</a><p>
+        Un point de départ pour prendre de meilleures décisions média.
+      </p>
+    </footer>
+  </body>
 </html>
-
-<style>
-	main {
-		display: grid;
-		place-content: center;
-		min-height: 100vh;
-		padding: var(--size-4, 1rem);
-		text-align: center;
-		gap: var(--size-2, 0.5rem);
-	}
-
-	h1 {
-		font-size: var(--font-size-6, 2.5rem);
-		font-weight: var(--font-weight-8, 800);
-		color: var(--text-1, #212529);
-		margin: 0;
-	}
-
-	p {
-		color: var(--text-2, #6c757d);
-		font-size: var(--font-size-3, 1.25rem);
-		margin: 0;
-	}
-</style>
