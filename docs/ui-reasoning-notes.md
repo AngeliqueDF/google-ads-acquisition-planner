@@ -44,14 +44,16 @@ La synthèse transforme les deux réponses en une phrase : un client génère un
 Cette étape précise :
 
 - le nombre de nouveaux clients visés ;
-- la périodicité de cet objectif ;
-- la part de la marge que l’entreprise souhaite conserver.
+- la période de référence de cet objectif ;
+- la marge minimale que l’entreprise souhaite conserver par client.
 
-Le terme « périodicité » est plus exact que « période », puisque les choix sont « par mois », « par trimestre » et « par an ».
+Les choix « par mois », « par trimestre » et « par an » expriment techniquement une périodicité. Le brief Beta conserve toutefois le label plus familier « Période » dans l’interface.
 
-La marge à conserver est demandée en pourcentage plutôt qu’en montant. Le pourcentage s’adapte lorsque la valeur moyenne d’un client évolue. L’interface peut ensuite restituer un montant concret : marge conservée, coût d’acquisition maximal par client et budget d’acquisition maximal.
+Deux approches ont été envisagées pour la marge minimale : un pourcentage de la marge ou un montant absolu. Le pourcentage s’adapte automatiquement lorsque la valeur moyenne d’un client évolue, mais le montant exprime plus directement le minimum concret que l’entreprise veut conserver. Le brief Beta retient donc un montant. L’interface restitue ensuite le coût d’acquisition maximal par client et le budget d’acquisition maximal.
 
-### 03 — Transformation commerciale
+Une lecture en pourcentage a été testée sous l’input, puis retirée. Isolée à cet endroit, elle ajoutait une information parallèle sans faciliter directement la décision. La synthèse regroupe plutôt la marge minimale par client, la marge totale estimée après publicité et le coût d’acquisition maximal. Les pourcentages pourront être réintroduits plus tard si les tests montrent qu’ils améliorent réellement la compréhension.
+
+### 03 — Conversion commerciale
 
 Cette étape isole le passage d’une personne réellement intéressée à un nouveau client. Elle évite de mélanger la performance commerciale et la performance de la page.
 
@@ -61,7 +63,7 @@ La question principale est formulée concrètement : sur dix personnes intéress
 
 La dernière étape relie l’objectif commercial au trafic :
 
-- taux de transformation de la page ;
+- taux de conversion de la page ;
 - coût estimé par clic.
 
 Elle restitue le nombre de clics nécessaires puis le budget publicitaire estimé. L’aide « Je ne connais pas ce chiffre » reste visible sous le coût par clic, car l’utilisateur peut légitimement ne pas avoir encore cette donnée.
@@ -72,6 +74,8 @@ Les résultats intermédiaires ne doivent pas ressembler à des cellules de tabl
 
 Une bordure verticale et une différence de taille typographique suffisent à distinguer ces synthèses. Le jargon apparaît en annotation, sous la phrase.
 
+Chaque synthèse se termine par une bande de chiffres clés. Contrairement aux phrases principales, cette zone assume le vocabulaire des spécialistes PPC et marketing : CPA, CPC, CPL, CVR, taux de closing et budget média. Elle offre une lecture experte en parallèle sans imposer ce jargon au reste du parcours. Cette répétition rend les sections comparables sans transformer la page en dashboard.
+
 Le résultat final suit cet ordre :
 
 1. conclusion en langage courant ;
@@ -80,6 +84,8 @@ Le résultat final suit cet ordre :
 4. métriques de synthèse.
 
 La formulation reste prudente. Un scénario favorable « mérite d’être testé » ; l’outil ne promet jamais une rentabilité.
+
+Le résultat doit aussi ouvrir naturellement vers Tanea : vérification du scénario, discussion sur les hypothèses ou préparation d’une campagne cadrée. Cette transition commerciale doit rester secondaire par rapport à la réponse fournie par l’outil.
 
 ## 5. Donner une idée claire de l’effort demandé
 
@@ -182,3 +188,4 @@ Un écran de chargement couvrant toute la page n’est pas privilégié. Il masq
 - Les aides proposées lorsque l’utilisateur ne connaît pas son coût par clic.
 - Le comportement des résultats avant que tous les champs nécessaires soient renseignés.
 - L’intérêt réel de Web Awesome après un prototype mesuré.
+- La formulation et la destination exactes de l’appel à l’action vers Tanea.
