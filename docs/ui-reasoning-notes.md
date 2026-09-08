@@ -139,6 +139,30 @@ La stratégie envisagée est un prototype limité :
 4. mesurer le poids JavaScript, le LCP, le CLS et l’expérience clavier ;
 5. étendre la solution seulement si le gain visuel et le gain d’accessibilité justifient le coût.
 
+### Documentation du benchmark
+
+Le benchmark fera partie de la documentation du projet et du futur article. Il comparera deux versions construites à partir du même écran :
+
+- la version de référence avec composants Astro et contrôles HTML natifs ;
+- le prototype utilisant des composants Web Awesome importés individuellement.
+
+Chaque mesure devra préciser :
+
+- les versions d’Astro, de Web Awesome et du navigateur ;
+- la commande et le mode de build utilisés ;
+- l’appareil ou l’émulation, la taille d’écran et les conditions réseau ;
+- les composants Web Awesome réellement importés ;
+- la taille transférée du JavaScript et du CSS, ainsi que leur taille compressée ;
+- le LCP, le CLS et le temps de blocage mesurés dans les mêmes conditions ;
+- le délai avant que les contrôles soient visibles et utilisables ;
+- la navigation clavier, la visibilité du focus, les labels et les messages d’erreur ;
+- les éventuels décalages visuels pendant la définition des Web Components ;
+- l’effort nécessaire pour reproduire la direction visuelle avec les deux approches.
+
+Les résultats seront conservés sous forme de tableau avant/après, accompagnés de captures desktop et mobile et des rapports bruts. La décision finale devra distinguer les mesures observées des impressions subjectives sur la qualité de l’interface.
+
+Aucune conclusion ne sera prise sur la seule taille du package installé : le critère pertinent est ce qui est réellement envoyé et exécuté sur la page de production.
+
 Un écran de chargement couvrant toute la page n’est pas privilégié. Il masquerait du contenu HTML déjà disponible et dégraderait la performance perçue. Si Web Awesome est testé, il vaut mieux réserver la hauteur des contrôles et gérer uniquement leur état avant définition.
 
 ## 9. Principes à conserver
