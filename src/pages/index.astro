@@ -33,7 +33,7 @@ import "../styles/global.css";
       <section class="hero" aria-labelledby="page-title">
         <p class="eyebrow">Google Ads viability calculator</p>
         <h1 id="page-title">
-          Google Ads peut-il être rentable pour votre activité ?
+          Google Ads est-il rentable pour votre activité ?
         </h1>
         <p class="hero-copy">
           Estimez le budget, le trafic et le nombre de prospects nécessaires<br
@@ -42,11 +42,22 @@ import "../styles/global.css";
         </p>
       </section>
 
+      <section class="tool-intro" aria-label="Déroulement du calculateur">
+        <p><strong>4 étapes · environ 3 minutes.</strong></p>
+        <p>
+          Vous partez de la valeur d’un client, puis précisez votre objectif,
+          votre transformation commerciale et vos hypothèses Google Ads.
+        </p>
+      </section>
+
       <nav class="step-nav" aria-label="Étapes du calculateur">
-        <a href="#step-1" class="active" data-step-link="step-1"><span>01</span> Valeur</a>
+        <a href="#step-1" class="active" data-step-link="step-1"
+          ><span>01</span> Valeur</a
+        >
         <a href="#step-2" data-step-link="step-2"><span>02</span> Objectif</a>
         <a href="#step-3" data-step-link="step-3"><span>03</span> Vente</a>
-        <a href="#step-4" data-step-link="step-4"><span>04</span> Acquisition</a>
+        <a href="#step-4" data-step-link="step-4"><span>04</span> Acquisition</a
+        >
       </nav>
 
       <div class="calculator-layout">
@@ -67,7 +78,10 @@ import "../styles/global.css";
             <div class="fields two-columns">
               <label class="field">
                 <span>Chiffre d’affaires moyen par nouveau client</span>
-                <small>Montant moyen facturé ou généré lorsqu’un nouveau client achète.</small>
+                <small
+                  >Montant moyen facturé ou généré lorsqu’un nouveau client
+                  achète.</small
+                >
                 <span class="input-shell"
                   ><input
                     type="number"
@@ -79,7 +93,10 @@ import "../styles/global.css";
               </label>
               <label class="field">
                 <span>Marge moyenne</span>
-                <small>Part du chiffre d’affaires qui reste après les coûts directement liés au produit ou à la prestation.</small>
+                <small
+                  >Part du chiffre d’affaires qui reste après les coûts
+                  directement liés au produit ou à la prestation.</small
+                >
                 <span class="input-shell"
                   ><input
                     type="number"
@@ -92,7 +109,11 @@ import "../styles/global.css";
               </label>
             </div>
             <div class="section-summary">
-              <p>Aujourd’hui, un nouveau client génère en moyenne <strong>600 € de chiffre d’affaires</strong>, dont <strong>180 € de marge</strong>.</p>
+              <p>
+                Aujourd’hui, un nouveau client génère en moyenne <strong
+                  >600 € de chiffre d’affaires</strong
+                >, dont <strong>180 € de marge</strong>.
+              </p>
               <small>Valeur moyenne d’un client · Marge par client</small>
             </div>
           </section>
@@ -102,15 +123,17 @@ import "../styles/global.css";
               <span class="step-number">02</span>
               <div>
                 <h2 id="step-2-title">Votre objectif de vente</h2><p>
-                  Précisons le résultat que vous souhaitez obtenir et la part
-                  de votre marge que vous voulez conserver.
+                  Précisons le résultat que vous souhaitez obtenir et la part de
+                  votre marge que vous voulez conserver.
                 </p>
               </div>
             </div>
             <div class="fields two-columns">
               <label class="field">
                 <span>Nouveaux clients visés</span>
-                <small>Combien de nouveaux clients souhaitez-vous obtenir ?</small>
+                <small
+                  >Combien de nouveaux clients souhaitez-vous obtenir ?</small
+                >
                 <span class="input-shell"
                   ><input
                     type="number"
@@ -122,7 +145,9 @@ import "../styles/global.css";
               </label>
               <label class="field">
                 <span>Périodicité</span>
-                <small>À quel rythme souhaitez-vous atteindre cet objectif ?</small>
+                <small
+                  >À quel rythme souhaitez-vous atteindre cet objectif ?</small
+                >
                 <select
                   ><option>Par mois</option><option>Par trimestre</option
                   ><option>Par an</option></select
@@ -130,7 +155,10 @@ import "../styles/global.css";
               </label>
               <label class="field field-wide">
                 <span>Part de la marge à conserver</span>
-                <small>Quelle part de la marge souhaitez-vous garder après les dépenses publicitaires ?</small>
+                <small
+                  >Quelle part de la marge souhaitez-vous garder après les
+                  dépenses publicitaires ?</small
+                >
                 <span class="input-shell"
                   ><input
                     type="number"
@@ -143,10 +171,21 @@ import "../styles/global.css";
               </label>
             </div>
             <div class="section-summary">
-              <p>Avec <strong>10 nouveaux clients</strong>, cela représenterait <strong>6 000 € de chiffre d’affaires supplémentaire</strong> et <strong>1 800 € de marge avant publicité</strong>.</p>
-              <p>En conservant <strong>70 % de la marge</strong>, vous pouvez consacrer jusqu’à <strong>54 €</strong> à l’acquisition de chaque nouveau client.</p>
+              <p>
+                Avec <strong>10 nouveaux clients</strong>, cela représenterait <strong
+                  >6 000 € de chiffre d’affaires supplémentaire</strong
+                > et <strong>1 800 € de marge avant publicité</strong>.
+              </p>
+              <p>
+                En conservant <strong>70 % de la marge</strong>, vous pouvez
+                consacrer jusqu’à <strong>54 €</strong> à l’acquisition de chaque
+                nouveau client.
+              </p>
               <small>Coût d’acquisition maximal · CPA</small>
-              <p class="summary-note">Soit un budget d’acquisition maximal de <strong>540 €</strong> sur la période.</p>
+              <p class="summary-note">
+                Soit un budget d’acquisition maximal de <strong>540 €</strong> sur
+                la période.
+              </p>
             </div>
           </section>
 
@@ -155,15 +194,18 @@ import "../styles/global.css";
               <span class="step-number">03</span>
               <div>
                 <h2 id="step-3-title">Votre transformation commerciale</h2><p>
-                  Toutes les personnes réellement intéressées ne deviennent
-                  pas clientes. Prenons cette réalité en compte.
+                  Toutes les personnes réellement intéressées ne deviennent pas
+                  clientes. Prenons cette réalité en compte.
                 </p>
               </div>
             </div>
             <div class="fields">
               <label class="field">
                 <span>Taux de transformation commerciale</span>
-                <small>Sur 10 personnes réellement intéressées, combien deviennent clientes ?</small>
+                <small
+                  >Sur 10 personnes réellement intéressées, combien deviennent
+                  clientes ?</small
+                >
                 <span class="input-shell"
                   ><input
                     type="number"
@@ -176,7 +218,10 @@ import "../styles/global.css";
               </label>
             </div>
             <div class="section-summary">
-              <p>Pour obtenir <strong>10 nouveaux clients</strong>, il faudrait environ <strong>100 personnes intéressées</strong>.</p>
+              <p>
+                Pour obtenir <strong>10 nouveaux clients</strong>, il faudrait
+                environ <strong>100 personnes intéressées</strong>.
+              </p>
               <small>Prospects nécessaires</small>
             </div>
           </section>
@@ -194,7 +239,9 @@ import "../styles/global.css";
             <div class="fields two-columns">
               <label class="field">
                 <span>Taux de transformation de la page</span>
-                <small>Sur 100 visiteurs de votre page, combien prennent contact ?</small>
+                <small
+                  >Sur 100 visiteurs de votre page, combien prennent contact ?</small
+                >
                 <span class="input-shell"
                   ><input
                     type="number"
@@ -207,7 +254,10 @@ import "../styles/global.css";
               </label>
               <label class="field">
                 <span>Coût estimé par clic</span>
-                <small>Combien pensez-vous payer lorsqu’une personne clique sur votre annonce ?</small>
+                <small
+                  >Combien pensez-vous payer lorsqu’une personne clique sur
+                  votre annonce ?</small
+                >
                 <span class="input-shell"
                   ><input
                     type="number"
@@ -223,8 +273,15 @@ import "../styles/global.css";
               ><span aria-hidden="true">?</span> Je ne connais pas ce chiffre</button
             >
             <div class="section-summary">
-              <p>Avec un taux de transformation de <strong>5 %</strong>, il faudrait environ <strong>2 000 clics</strong> pour générer 100 prises de contact.</p>
-              <p>À <strong>2,50 € par clic</strong>, le budget publicitaire estimé serait de <strong>5 000 €</strong>.</p>
+              <p>
+                Avec un taux de transformation de <strong>5 %</strong>, il
+                faudrait environ <strong>2 000 clics</strong> pour générer 100 prises
+                de contact.
+              </p>
+              <p>
+                À <strong>2,50 € par clic</strong>, le budget publicitaire
+                estimé serait de <strong>5 000 €</strong>.
+              </p>
               <small>CPC estimé · Budget média estimé</small>
             </div>
           </section>
@@ -234,17 +291,31 @@ import "../styles/global.css";
             aria-label="Résumé du scénario"
           >
             <p class="result-kicker">Votre scénario</p>
-            <h2 class="result-title">Dans ce scénario, Google Ads ne semble pas être un investissement intéressant.</h2>
-            <p class="result-reason">Votre objectif permet de consacrer environ <strong>540 €</strong> à l’acquisition de 10 nouveaux clients, alors que le trafic nécessaire coûterait environ <strong>5 000 €</strong>.</p>
+            <h2 class="result-title">
+              Dans ce scénario, Google Ads ne semble pas être un investissement
+              intéressant.
+            </h2>
+            <p class="result-reason">
+              Votre objectif permet de consacrer environ <strong>540 €</strong> à
+              l’acquisition de 10 nouveaux clients, alors que le trafic nécessaire
+              coûterait environ <strong>5 000 €</strong>.
+            </p>
             <div class="result-comparison">
-              <div><strong>500 €</strong><span>coût estimé par nouveau client</span></div>
+              <div>
+                <strong>500 €</strong><span
+                  >coût estimé par nouveau client</span>
+              </div>
               <span class="comparison-word">contre</span>
-              <div><strong>54 €</strong><span>coût maximal acceptable</span></div>
+              <div>
+                <strong>54 €</strong><span>coût maximal acceptable</span>
+              </div>
             </div>
             <div class="result-metrics">
               <p><strong>100</strong><span>prospects nécessaires</span></p>
               <p><strong>2 000</strong><span>clics estimés</span></p>
-              <p><strong>5 000 €</strong><span>budget publicitaire estimé</span></p>
+              <p>
+                <strong>5 000 €</strong><span>budget publicitaire estimé</span>
+              </p>
             </div>
           </section>
         </form>
@@ -252,17 +323,31 @@ import "../styles/global.css";
         <aside class="result-panel" aria-label="Résumé du scénario">
           <div class="result-box">
             <p class="result-kicker">Votre scénario</p>
-            <h2 class="result-title">Dans ce scénario, Google Ads ne semble pas être un investissement intéressant.</h2>
-            <p class="result-reason">Votre objectif permet de consacrer environ <strong>540 €</strong> à l’acquisition de 10 nouveaux clients, alors que le trafic nécessaire coûterait environ <strong>5 000 €</strong>.</p>
+            <h2 class="result-title">
+              Dans ce scénario, Google Ads ne semble pas être un investissement
+              intéressant.
+            </h2>
+            <p class="result-reason">
+              Votre objectif permet de consacrer environ <strong>540 €</strong> à
+              l’acquisition de 10 nouveaux clients, alors que le trafic nécessaire
+              coûterait environ <strong>5 000 €</strong>.
+            </p>
             <div class="result-comparison">
-              <div><strong>500 €</strong><span>coût estimé par nouveau client</span></div>
+              <div>
+                <strong>500 €</strong><span
+                  >coût estimé par nouveau client</span>
+              </div>
               <span class="comparison-word">contre</span>
-              <div><strong>54 €</strong><span>coût maximal acceptable</span></div>
+              <div>
+                <strong>54 €</strong><span>coût maximal acceptable</span>
+              </div>
             </div>
             <div class="result-metrics">
               <p><strong>100</strong><span>prospects nécessaires</span></p>
               <p><strong>2 000</strong><span>clics estimés</span></p>
-              <p><strong>5 000 €</strong><span>budget publicitaire estimé</span></p>
+              <p>
+                <strong>5 000 €</strong><span>budget publicitaire estimé</span>
+              </p>
             </div>
             <p class="result-footnote">
               Ajustez vos hypothèses pour rapprocher le coût estimé du maximum
@@ -294,8 +379,8 @@ import "../styles/global.css";
             </li>
             <li>
               <span>02</span><p>
-                <strong>Objectif de vente</strong>Nombre de clients souhaités
-                et part de la marge à conserver.
+                <strong>Objectif de vente</strong>Nombre de clients souhaités et
+                part de la marge à conserver.
               </p>
             </li>
             <li>
@@ -349,20 +434,27 @@ import "../styles/global.css";
       </p>
     </footer>
     <script>
-      const stepLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-step-link]')];
-      const stepSections = [...document.querySelectorAll<HTMLElement>('.step[id]')];
+      const stepLinks = [
+        ...document.querySelectorAll<HTMLAnchorElement>("[data-step-link]"),
+      ];
+      const stepSections = [
+        ...document.querySelectorAll<HTMLElement>(".step[id]"),
+      ];
 
-      const stepObserver = new IntersectionObserver((entries) => {
-        const visibleStep = entries.find((entry) => entry.isIntersecting);
-        if (!visibleStep) return;
+      const stepObserver = new IntersectionObserver(
+        (entries) => {
+          const visibleStep = entries.find((entry) => entry.isIntersecting);
+          if (!visibleStep) return;
 
-        stepLinks.forEach((link) => {
-          const isCurrent = link.dataset.stepLink === visibleStep.target.id;
-          link.classList.toggle('active', isCurrent);
-          if (isCurrent) link.setAttribute('aria-current', 'step');
-          else link.removeAttribute('aria-current');
-        });
-      }, { rootMargin: '-30% 0px -60% 0px' });
+          stepLinks.forEach((link) => {
+            const isCurrent = link.dataset.stepLink === visibleStep.target.id;
+            link.classList.toggle("active", isCurrent);
+            if (isCurrent) link.setAttribute("aria-current", "step");
+            else link.removeAttribute("aria-current");
+          });
+        },
+        { rootMargin: "-30% 0px -60% 0px" },
+      );
 
       stepSections.forEach((section) => stepObserver.observe(section));
     </script>
