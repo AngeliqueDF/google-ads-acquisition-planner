@@ -2,6 +2,15 @@
 
 Project documentation and development notes should be written in English by default. The README may be bilingual, with the English version first and the French version last.
 
+## Project context
+
+- This repository is for the interactive React calculator island. The portfolio is a separate Astro project and will host the calculator on its own page.
+- Keep the product specialist-led: Google Ads specialists are the primary audience. The initial use case is lead generation, including quote inquiries and what happens after the click and after conversion.
+- Treat broader acquisition-planning ideas as potential future work, not assumed scope. Keep the mini diagnostic deferred.
+- Work through one small, sequential issue at a time. Do not create an umbrella issue or sub-issues unless the work later needs independent tracking.
+- Write tests first for calculation logic, keep calculations in pure TypeScript, and cover every calculation with unit tests.
+- Keep private product reasoning and raw feedback out of public project documentation; record only durable direction and implementation constraints here.
+
 ## Design and CSS
 
 - Prefer existing Open Props variables before introducing arbitrary values.
