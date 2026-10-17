@@ -20,7 +20,7 @@ The project records decisions about scope, user flow, and technical choices as t
 
 - **Framework:** [Astro](https://astro.build/) static site generation
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styles:** CSS and [Open Props](https://open-props.style/)
+- **Styles:** CSS
 - **Code quality:** Astro Check, ESLint, and Prettier
 
 ### Git workflow
@@ -79,7 +79,7 @@ Le projet consigne au fil de son évolution les décisions concernant le périm�
 
 - **Framework :** génération de site statique avec [Astro](https://astro.build/)
 - **Langage :** [TypeScript](https://www.typescriptlang.org/)
-- **Styles :** CSS et [Open Props](https://open-props.style/)
+- **Styles :** CSS
 - **Qualité du code :** Astro Check, ESLint et Prettier
 
 ### Workflow Git
