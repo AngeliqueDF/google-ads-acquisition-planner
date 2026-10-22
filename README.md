@@ -1,14 +1,16 @@
-# Google Ads Calculator
+# Google Ads Acquisition Planner
 
 [English](#english) | [Français](#français)
 
 ## English
 
-A Google Ads acquisition calculator in development. This portfolio project demonstrates the design and delivery of an interactive web experience.
+A Google Ads acquisition scenario planner in development. This portfolio project demonstrates the design and delivery of an interactive web experience.
 
 ### Project status
 
-The public page is currently a work in progress. The calculator is not available yet.
+The public page is currently a work in progress. The planner is not available yet.
+
+The project overview and product framing are published at [Google Ads Acquisition Planner on angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
 The planned first version will help Google Ads specialists build an acquisition scenario with a prospect, starting from a business goal. Planned scenarios include quote inquiries, the steps after a click and after a conversion, and the assumptions connecting budget to expected outcomes. Company history may complement market benchmarks when those capabilities are developed.
 
@@ -102,11 +104,13 @@ The build outputs the site to `dist/`, ready for a static host. A hosting provid
 
 ## Français
 
-Un calculateur d’acquisition Google Ads en cours de développement. Ce projet de portfolio montre la conception et la réalisation d’une expérience web interactive.
+Un planificateur de scénarios d’acquisition Google Ads en cours de développement. Ce projet de portfolio montre la conception et la réalisation d’une expérience web interactive.
 
 ### État du projet
 
-La page publique est actuellement une page en cours de réalisation. Le calculateur n’est pas encore disponible.
+La page publique est actuellement une page en cours de réalisation. Le planificateur n’est pas encore disponible.
+
+La présentation générale et le cadrage du projet sont disponibles sur [Google Ads Acquisition Planner sur angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
 La première version prévue aidera les spécialistes Google Ads à construire un scénario d’acquisition avec un prospect, à partir d’un objectif commercial. Les scénarios prévus incluent les demandes de devis, les étapes après le clic et après la conversion, ainsi que les hypothèses reliant le budget aux résultats attendus. Les données historiques de l’entreprise pourront compléter les benchmarks lorsque ces fonctionnalités seront développées.
 
