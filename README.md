@@ -67,6 +67,11 @@ GitHub Actions runs the quality checks and an Astro production build for every p
 | `npm run validate`     | `npm run check && npm run build`                                         | Full pre-PR verification (all quality checks + production build).     |
 | `npm run prepare`      | `node scripts/setup-git-hooks.mjs`                                       | Configures Git to use `.githooks` directory.                          |
 
+### Helper scripts (`scripts/`)
+
+- `scripts/setup-git-hooks.mjs`: Configures Git to use the `.githooks` directory for hooks (`git config core.hooksPath .githooks`). Triggered automatically on `npm install`.
+- `scripts/validate-commit-message.mjs`: Validates Conventional Commits syntax and enforces the 70-character limit on the subject line. Executed automatically by `.githooks/commit-msg`.
+
 ### Local development
 
 ```bash
@@ -147,6 +152,11 @@ GitHub Actions exécute les contrôles de qualité ainsi qu’un build Astro de 
 | `npm run check`        | `npm run typecheck && npm run lint && npm run format:check`              | Exécute l'ensemble des contrôles de qualité (types, linting, formatage).  |
 | `npm run validate`     | `npm run check && npm run build`                                         | Vérification complète avant PR (contrôles qualité + build de production). |
 | `npm run prepare`      | `node scripts/setup-git-hooks.mjs`                                       | Configure Git pour utiliser le dossier `.githooks`.                       |
+
+### Scripts utilitaires (`scripts/`)
+
+- `scripts/setup-git-hooks.mjs` : Configure Git pour utiliser le dossier `.githooks` (`git config core.hooksPath .githooks`). Exécuté automatiquement lors du `npm install`.
+- `scripts/validate-commit-message.mjs` : Valide la syntaxe Conventional Commits et applique la limite de 70 caractères sur la première ligne. Exécuté automatiquement par `.githooks/commit-msg`.
 
 ### Développement local
 
