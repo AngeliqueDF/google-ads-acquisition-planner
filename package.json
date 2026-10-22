@@ -8,11 +8,13 @@
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "astro check --minimumSeverity warning --minimumFailingSeverity warning",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "npm run typecheck && npm run lint && npm run format:check",
+    "check": "npm run test && npm run typecheck && npm run lint && npm run format:check",
     "validate": "npm run check && npm run build",
     "prepare": "node scripts/setup-git-hooks.mjs"
   },
@@ -25,6 +27,7 @@
     "eslint-plugin-astro": "^3.2.1",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
   }
 }

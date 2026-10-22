@@ -3,5 +3,6 @@ set -eu
 
 npm run format
 git update-index --again
+npm run test
 npm run typecheck
 npm run lint
