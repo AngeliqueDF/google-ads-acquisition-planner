@@ -19,18 +19,28 @@ The project records decisions about scope, user flow, and technical choices as t
 ### Stack
 
 - **Framework:** [Astro](https://astro.build/) static site generation
+- **UI:** [React](https://react.dev/) interactive island
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styles:** CSS
 - **Code quality:** Astro Check, ESLint, and Prettier
 
-### Why TypeScript everywhere
+### Project structure
 
-TypeScript is used across the entire codebase—from calculations to Astro page components and tooling scripts—for specific engineering reasons:
+```text
+src/
+├── components/          # UI components (Astro and React)
+│   └── calculator/      # Interactive React island components (.tsx)
+├── layouts/             # Astro layouts (.astro)
+├── lib/                 # Pure TypeScript business logic and formatting utilities
+├── pages/               # Astro routes and page entry points (.astro)
+└── styles/              # Global CSS and custom properties (tokens.css)
+```
 
-- **Mathematical and financial precision:** Google Ads acquisition models depend on interdependent calculations (CPA, CPC, CVR, margins, and budget limits). Strict typing guarantees explicit numeric contracts and prevents silent `NaN` or `undefined` runtime errors in financial estimations.
-- **Contract-first architecture:** Domain models are defined as pure TypeScript interfaces (`ScenarioInputs`, `ScenarioOutputs`). These serve as living contracts shared between the business logic engine, UI components, and host integrations.
-- **Compile-time Astro validation:** Astro Check (`astro check`) validates `.astro` component props, markup expressions, and imports at build time, eliminating template runtime errors before deployment.
-- **Self-documenting domain model:** Types explicitly describe units and constraints (e.g. percentages, currency values, client counts), making the codebase accessible and maintainable.
+### Adding code and components
+
+- **Pure logic and math (`src/lib/`):** Put calculation logic, domain contracts, and formatting helpers here as pure TypeScript functions with zero UI dependencies. Write unit tests co-located alongside the file (e.g. `calculator.ts` and `calculator.test.ts`).
+- **Interactive React islands (`src/components/calculator/`):** When client-side state or user interaction is required, build the component in React (`.tsx`). To load it on an Astro page, import it and add a client directive (e.g. `<ScenarioForm client:load />`).
+- **Static components (`src/components/`):** Use `.astro` components for presentation elements that require no JavaScript in the browser.
 
 ### Git workflow
 
@@ -43,7 +53,7 @@ TypeScript is used across the entire codebase—from calculations to Astro page 
 
 ### Quality gates and Git hooks
 
-The repository enforces a "shift-left" quality approach through local Git hooks and GitHub Actions CI. Hooks are located in `.githooks/` and are automatically configured during `npm install` via `scripts/setup-git-hooks.mjs`:
+Quality gates are enforced locally before committing and in CI on pull requests. Hooks are located in `.githooks/` and are automatically configured during `npm install` via `scripts/setup-git-hooks.mjs`:
 
 1. **`pre-commit`:** Automatically formats code with Prettier (`npm run format`), updates the Git index, runs type checks with Astro Check (warnings fail), and runs ESLint (0 warnings allowed).
 2. **`commit-msg`:** Validates that the commit message adheres to Conventional Commits and stays within the 70-character first-line limit.
@@ -105,18 +115,28 @@ Le projet consigne au fil de son évolution les décisions concernant le périm�
 ### Stack
 
 - **Framework :** génération de site statique avec [Astro](https://astro.build/)
+- **Interface :** îlot interactif avec [React](https://react.dev/)
 - **Langage :** [TypeScript](https://www.typescriptlang.org/)
 - **Styles :** CSS
 - **Qualité du code :** Astro Check, ESLint et Prettier
 
-### Pourquoi TypeScript partout
+### Structure du projet
 
-TypeScript est utilisé sur l’ensemble du projet — des fonctions de calcul aux composants Astro et scripts d’outillage — pour des raisons d’ingénierie précises :
+```text
+src/
+├── components/          # Composants d'interface (Astro et React)
+│   └── calculator/      # Composants d'îlot React interactifs (.tsx)
+├── layouts/             # Mises en page Astro (.astro)
+├── lib/                 # Logique métier pure en TypeScript et utilitaires de formatage
+├── pages/               # Routes et points d'entrée Astro (.astro)
+└── styles/              # CSS global et variables de style (tokens.css)
+```
 
-- **Précision mathématique et financière :** Les modèles d'acquisition Google Ads reposent sur des calculs interdépendants (CPA, CPC, taux de conversion, marges et budget maximal). Le typage strict garantit des contrats numériques explicites et empêche les erreurs d'exécution silencieuses comme `NaN` ou `undefined` dans les estimations financières.
-- **Architecture orientée contrats :** Les modèles de domaine sont définis sous forme d'interfaces TypeScript pures (`ScenarioInputs`, `ScenarioOutputs`). Ils servent de contrats partagés entre le moteur de calcul, les composants d'interface et les intégrations hôtes.
-- **Validation Astro à la compilation :** Astro Check (`astro check`) valide les props des composants `.astro`, les expressions du template et les imports dès la compilation, éliminant les erreurs à l'exécution avant la mise en production.
-- **Modèle métier auto-documenté :** Les types explicitent les unités et les contraintes (pourcentages, devises, volumes de clients), facilitant la maintenance et la lisibilité du code.
+### Ajouter du code et des composants
+
+- **Logique pure et calculs (`src/lib/`) :** Placez ici les fonctions de calcul, contrats métier et fonctions de formatage en TypeScript pur, sans dépendance d'interface. Les tests unitaires sont co-localisés à côté du fichier (par ex. `calculator.ts` et `calculator.test.ts`).
+- **Îlots React interactifs (`src/components/calculator/`) :** Lorsqu'un état côté client ou une interaction utilisateur est requise, créez le composant en React (`.tsx`). Pour l'afficher sur une page Astro, importez-le et ajoutez une directive client (par ex. `<ScenarioForm client:load />`).
+- **Composants statiques (`src/components/`) :** Utilisez des composants `.astro` pour les éléments visuels ne nécessitant aucun JavaScript dans le navigateur.
 
 ### Workflow Git
 
@@ -129,7 +149,7 @@ TypeScript est utilisé sur l’ensemble du projet — des fonctions de calcul a
 
 ### Portes de qualité et hooks Git
 
-Le dépôt applique une démarche qualité « shift-left » via des hooks Git locaux et l'intégration continue GitHub Actions. Les hooks se trouvent dans `.githooks/` et sont automatiquement configurés lors du `npm install` via `scripts/setup-git-hooks.mjs` :
+Les contrôles de qualité sont appliqués localement avant chaque commit et dans la CI lors des pull requests. Les hooks se trouvent dans `.githooks/` et sont automatiquement configurés lors du `npm install` via `scripts/setup-git-hooks.mjs` :
 
 1. **`pre-commit` :** Formate automatiquement le code avec Prettier (`npm run format`), met à jour l'index Git, vérifie les types avec Astro Check (les avertissements échouent) et exécute ESLint (0 avertissement autorisé).
 2. **`commit-msg` :** Vérifie que le message de commit respecte Conventional Commits et ne dépasse pas 70 caractères sur la première ligne.
