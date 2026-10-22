@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import { CalculatorIsland } from '../components/calculator/CalculatorIsland'
 ---
 
 <!doctype html>
@@ -7,13 +8,13 @@ import '../styles/global.css'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Google Ads Acquisition Planner</title>
   </head>
   <body>
     <main>
       <h1>Google Ads Acquisition Planner</h1>
       <p>Simulateur et planificateur d'acquisition pour campagnes Google Ads.</p>
+      <CalculatorIsland client:load />
     </main>
   </body>
 </html>
