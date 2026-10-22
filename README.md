@@ -1,14 +1,16 @@
-# Google Ads Calculator
+# Google Ads Acquisition Planner
 
 [English](#english) | [Français](#français)
 
 ## English
 
-A Google Ads acquisition calculator in development. This portfolio project demonstrates the design and delivery of an interactive web experience.
+A Google Ads acquisition scenario planner in development. This portfolio project demonstrates the design and delivery of an interactive web experience.
 
 ### Project status
 
-The public page is currently a work in progress. The calculator is not available yet.
+The public page is currently a work in progress. The planner is not available yet.
+
+The project overview and product framing are published at [Google Ads Acquisition Planner on angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
 The planned first version will help Google Ads specialists build an acquisition scenario with a prospect, starting from a business goal. Planned scenarios include quote inquiries, the steps after a click and after a conversion, and the assumptions connecting budget to expected outcomes. Company history may complement market benchmarks when those capabilities are developed.
 
@@ -55,7 +57,7 @@ src/
 
 Quality gates are enforced locally before committing and in CI on pull requests. Hooks are located in `.githooks/` and are automatically configured during `npm install` via `scripts/setup-git-hooks.mjs`:
 
-1. **`pre-commit`:** Automatically formats code with Prettier (`npm run format`), updates the Git index, runs type checks with Astro Check (warnings fail), and runs ESLint (0 warnings allowed).
+1. **`pre-commit`:** Automatically formats code with Prettier (`npm run format`), updates the Git index, runs unit tests with Vitest (`npm test`), runs type checks with Astro Check (warnings fail), and runs ESLint (0 warnings allowed).
 2. **`commit-msg`:** Validates that the commit message adheres to Conventional Commits and stays within the 70-character first-line limit.
 3. **`pre-push`:** Blocks direct pushes to protected branches (`development` and `main`), enforcing the Pull Request workflow.
 
@@ -63,19 +65,21 @@ GitHub Actions runs the quality checks and an Astro production build for every p
 
 ### NPM scripts
 
-| Command                | Action                                                                   | Purpose                                                               |
-| :--------------------- | :----------------------------------------------------------------------- | :-------------------------------------------------------------------- |
-| `npm run dev`          | `astro dev`                                                              | Starts local development server with hot module replacement.          |
-| `npm run build`        | `astro build`                                                            | Compiles static site to `dist/` with sub-second performance.          |
-| `npm run preview`      | `astro preview`                                                          | Locally serves the production `dist/` build for verification.         |
-| `npm run typecheck`    | `astro check --minimumSeverity warning --minimumFailingSeverity warning` | Runs Astro and TypeScript type checks; fails on any error or warning. |
-| `npm run lint`         | `eslint . --max-warnings=0`                                              | Lints code; fails on any warning.                                     |
-| `npm run lint:fix`     | `eslint . --fix`                                                         | Automatically fixes auto-correctable ESLint issues.                   |
-| `npm run format`       | `prettier --write .`                                                     | Formats all files according to project formatting standards.          |
-| `npm run format:check` | `prettier --check .`                                                     | Checks formatting without modifying files.                            |
-| `npm run check`        | `npm run typecheck && npm run lint && npm run format:check`              | Runs all code quality gates (types, linting, formatting).             |
-| `npm run validate`     | `npm run check && npm run build`                                         | Full pre-PR verification (all quality checks + production build).     |
-| `npm run prepare`      | `node scripts/setup-git-hooks.mjs`                                       | Configures Git to use `.githooks` directory.                          |
+| Command                | Action                                                                      | Purpose                                                               |
+| :--------------------- | :-------------------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| `npm run dev`          | `astro dev`                                                                 | Starts local development server with hot module replacement.          |
+| `npm run build`        | `astro build`                                                               | Compiles static site to `dist/` with sub-second performance.          |
+| `npm run preview`      | `astro preview`                                                             | Locally serves the production `dist/` build for verification.         |
+| `npm test`             | `vitest run`                                                                | Runs unit test suite with Vitest; fails on any failed test.           |
+| `npm run test:watch`   | `vitest`                                                                    | Starts Vitest in interactive watch mode for TDD workflows.            |
+| `npm run typecheck`    | `astro check --minimumSeverity warning --minimumFailingSeverity warning`    | Runs Astro and TypeScript type checks; fails on any error or warning. |
+| `npm run lint`         | `eslint . --max-warnings=0`                                                 | Lints code; fails on any warning.                                     |
+| `npm run lint:fix`     | `eslint . --fix`                                                            | Automatically fixes auto-correctable ESLint issues.                   |
+| `npm run format`       | `prettier --write .`                                                        | Formats all files according to project formatting standards.          |
+| `npm run format:check` | `prettier --check .`                                                        | Checks formatting without modifying files.                            |
+| `npm run check`        | `npm run test && npm run typecheck && npm run lint && npm run format:check` | Runs all code quality gates (tests, types, linting, formatting).      |
+| `npm run validate`     | `npm run check && npm run build`                                            | Full pre-PR verification (all quality checks + production build).     |
+| `npm run prepare`      | `node scripts/setup-git-hooks.mjs`                                          | Configures Git to use `.githooks` directory.                          |
 
 ### Helper scripts (`scripts/`)
 
@@ -100,11 +104,13 @@ The build outputs the site to `dist/`, ready for a static host. A hosting provid
 
 ## Français
 
-Un calculateur d’acquisition Google Ads en cours de développement. Ce projet de portfolio montre la conception et la réalisation d’une expérience web interactive.
+Un planificateur de scénarios d’acquisition Google Ads en cours de développement. Ce projet de portfolio montre la conception et la réalisation d’une expérience web interactive.
 
 ### État du projet
 
-La page publique est actuellement une page en cours de réalisation. Le calculateur n’est pas encore disponible.
+La page publique est actuellement une page en cours de réalisation. Le planificateur n’est pas encore disponible.
+
+La présentation générale et le cadrage du projet sont disponibles sur [Google Ads Acquisition Planner sur angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
 La première version prévue aidera les spécialistes Google Ads à construire un scénario d’acquisition avec un prospect, à partir d’un objectif commercial. Les scénarios prévus incluent les demandes de devis, les étapes après le clic et après la conversion, ainsi que les hypothèses reliant le budget aux résultats attendus. Les données historiques de l’entreprise pourront compléter les benchmarks lorsque ces fonctionnalités seront développées.
 
@@ -151,7 +157,7 @@ src/
 
 Les contrôles de qualité sont appliqués localement avant chaque commit et dans la CI lors des pull requests. Les hooks se trouvent dans `.githooks/` et sont automatiquement configurés lors du `npm install` via `scripts/setup-git-hooks.mjs` :
 
-1. **`pre-commit` :** Formate automatiquement le code avec Prettier (`npm run format`), met à jour l'index Git, vérifie les types avec Astro Check (les avertissements échouent) et exécute ESLint (0 avertissement autorisé).
+1. **`pre-commit` :** Formate automatiquement le code avec Prettier (`npm run format`), met à jour l'index Git, exécute les tests unitaires avec Vitest (`npm test`), vérifie les types avec Astro Check (les avertissements échouent) et exécute ESLint (0 avertissement autorisé).
 2. **`commit-msg` :** Vérifie que le message de commit respecte Conventional Commits et ne dépasse pas 70 caractères sur la première ligne.
 3. **`pre-push` :** Bloque les pushes directs vers les branches protégées (`development` et `main`), imposant le passage par Pull Request.
 
@@ -159,19 +165,21 @@ GitHub Actions exécute les contrôles de qualité ainsi qu’un build Astro de 
 
 ### Scripts NPM
 
-| Commande               | Action                                                                   | Rôle                                                                      |
-| :--------------------- | :----------------------------------------------------------------------- | :------------------------------------------------------------------------ |
-| `npm run dev`          | `astro dev`                                                              | Lance le serveur local avec rechargement à chaud.                         |
-| `npm run build`        | `astro build`                                                            | Compile le site statique dans `dist/` en moins d'une seconde.             |
-| `npm run preview`      | `astro preview`                                                          | Sert localement le build de production pour vérification.                 |
-| `npm run typecheck`    | `astro check --minimumSeverity warning --minimumFailingSeverity warning` | Vérifie les types Astro et TypeScript ; échoue à la moindre alerte.       |
-| `npm run lint`         | `eslint . --max-warnings=0`                                              | Analyse le code avec ESLint ; 0 avertissement autorisé.                   |
-| `npm run lint:fix`     | `eslint . --fix`                                                         | Corrige automatiquement les règles ESLint compatibles.                    |
-| `npm run format`       | `prettier --write .`                                                     | Formate l'ensemble des fichiers selon les standards du projet.            |
-| `npm run format:check` | `prettier --check .`                                                     | Vérifie le formatage sans modifier les fichiers.                          |
-| `npm run check`        | `npm run typecheck && npm run lint && npm run format:check`              | Exécute l'ensemble des contrôles de qualité (types, linting, formatage).  |
-| `npm run validate`     | `npm run check && npm run build`                                         | Vérification complète avant PR (contrôles qualité + build de production). |
-| `npm run prepare`      | `node scripts/setup-git-hooks.mjs`                                       | Configure Git pour utiliser le dossier `.githooks`.                       |
+| Commande               | Action                                                                      | Rôle                                                                            |
+| :--------------------- | :-------------------------------------------------------------------------- | :------------------------------------------------------------------------------ |
+| `npm run dev`          | `astro dev`                                                                 | Lance le serveur local avec rechargement à chaud.                               |
+| `npm run build`        | `astro build`                                                               | Compile le site statique dans `dist/` en moins d'une seconde.                   |
+| `npm run preview`      | `astro preview`                                                             | Sert localement le build de production pour vérification.                       |
+| `npm test`             | `vitest run`                                                                | Exécute la suite de tests unitaires avec Vitest.                                |
+| `npm run test:watch`   | `vitest`                                                                    | Lance les tests unitaires en mode interactif (watch).                           |
+| `npm run typecheck`    | `astro check --minimumSeverity warning --minimumFailingSeverity warning`    | Vérifie les types Astro et TypeScript ; échoue à la moindre alerte.             |
+| `npm run lint`         | `eslint . --max-warnings=0`                                                 | Analyse le code avec ESLint ; 0 avertissement autorisé.                         |
+| `npm run lint:fix`     | `eslint . --fix`                                                            | Corrige automatiquement les règles ESLint compatibles.                          |
+| `npm run format`       | `prettier --write .`                                                        | Formate l'ensemble des fichiers selon les standards du projet.                  |
+| `npm run format:check` | `prettier --check .`                                                        | Vérifie le formatage sans modifier les fichiers.                                |
+| `npm run check`        | `npm run test && npm run typecheck && npm run lint && npm run format:check` | Exécute l'ensemble des contrôles de qualité (tests, types, linting, formatage). |
+| `npm run validate`     | `npm run check && npm run build`                                            | Vérification complète avant PR (contrôles qualité + build de production).       |
+| `npm run prepare`      | `node scripts/setup-git-hooks.mjs`                                          | Configure Git pour utiliser le dossier `.githooks`.                             |
 
 ### Scripts utilitaires (`scripts/`)
 
