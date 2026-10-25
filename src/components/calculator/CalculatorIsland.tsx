@@ -253,11 +253,12 @@ function InlineStepSummary({
     return (
       <div className="section-summary" role="group" aria-label="Résumé de l’objectif">
         <p>
-          Vous visez l’acquisition de{' '}
+          Vous visez{' '}
           <strong>
             {target} nouveaux clients {period}
           </strong>
-          .
+          , avec un chiffre d’affaires moyen de {formatCurrency(inputs.averageRevenuePerClient)} par
+          client.
         </p>
         <div className="summary-metrics">
           <InlineMetric label="Clients visés" value={target} />
@@ -324,7 +325,7 @@ function InlineStepSummary({
       <p>
         {trafficUnavailable
           ? 'Saisissez des taux de conversion supérieurs à 0 % pour estimer le trafic et le budget.'
-          : `Avec un taux de conversion de page de ${formatPercent(inputs.landingPageConversionPercent)}, il faudrait environ ${formatCount(results.requiredClicks)} clics. Le budget estimé est de ${formatCurrency(results.estimatedBudget)}${results.estimatedCpa !== null ? `, soit un CAC estimé de ${formatCurrency(results.estimatedCpa)}.` : '.'}`}
+          : `Avec un taux de conversion de page de ${formatPercent(inputs.landingPageConversionPercent)}, il faudrait environ ${formatCount(results.requiredClicks)} clics (soit ${formatCurrency(results.estimatedBudget)} de budget) pour générer ${formatCount(results.requiredLeads)} prospects${results.estimatedCpa !== null ? `. Après application de votre taux de closing, cela représente un CAC de ${formatCurrency(results.estimatedCpa)}.` : '.'}`}
       </p>
       <div className="summary-metrics">
         <InlineMetric
@@ -518,7 +519,7 @@ export function CalculatorIsland() {
             </span>
             <div className="step-content">
               <header className="step-heading">
-                <h2 id="step-2-title">Marge à préserver</h2>
+                <h2 id="step-2-title">Valeur & rentabilité</h2>
                 <p>
                   Précisons la marge brute et celle que vous souhaitez conserver après
                   l’acquisition.
@@ -579,13 +580,13 @@ export function CalculatorIsland() {
             </span>
             <div className="step-content">
               <header className="step-heading">
-                <h2 id="step-3-title">De la demande au client</h2>
+                <h2 id="step-3-title">Conversion commerciale</h2>
                 <p>Parlons de la part de vos prospects qui deviennent des clients.</p>
               </header>
               <div className="fields two-columns">
                 <Field
                   id="closing-rate"
-                  label="Prospects convertis en clients"
+                  label="Taux de closing"
                   description="En moyenne, sur 10 prospects, combien deviennent des clients ?"
                 >
                   <NumberInput
@@ -617,7 +618,7 @@ export function CalculatorIsland() {
             </span>
             <div className="step-content">
               <header className="step-heading">
-                <h2 id="step-4-title">Google Ads</h2>
+                <h2 id="step-4-title">Acquisition Google Ads</h2>
                 <p>
                   Relions maintenant votre objectif commercial au trafic nécessaire pour
                   l’atteindre.
