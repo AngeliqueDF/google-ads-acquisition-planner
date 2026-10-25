@@ -1,4 +1,5 @@
-import { useEffect, useState, type ChangeEvent } from 'react'
+import { MantineProvider, NumberInput, Select } from '@mantine/core'
+import { useEffect, useState, type ReactNode } from 'react'
 import {
   calculateScenario,
   type CalculatorInputs,
@@ -12,7 +13,7 @@ type NumericField =
   | 'averageRevenuePerClient'
   | 'grossMarginPercent'
   | 'retainedMarginPerClient'
-  | 'closingRatePercent'
+  | 'closingRateOutOfTen'
   | 'landingPageConversionPercent'
   | 'costPerClick'
 type StepNumber = 1 | 2 | 3 | 4
@@ -23,7 +24,7 @@ const initialValues: FormValues = {
   averageRevenuePerClient: '600',
   grossMarginPercent: '30',
   retainedMarginPerClient: '120',
-  closingRatePercent: '10',
+  closingRateOutOfTen: '1',
   landingPageConversionPercent: '5',
   costPerClick: '2.5',
 }
@@ -62,6 +63,10 @@ function formatPercent(value: number): string {
   return `${decimalFormatter.format(value)} %`
 }
 
+function formatOutOfTen(value: number): string {
+  return `${decimalFormatter.format(value / 10)} sur 10`
+}
+
 function formatCurrency(value: number | null): string {
   return value === null ? '—' : currencyFormatter.format(value)
 }
@@ -73,7 +78,7 @@ function getInputs(values: FormValues): CalculatorInputs {
     averageRevenuePerClient: toNumber(values.averageRevenuePerClient),
     grossMarginPercent: toNumber(values.grossMarginPercent),
     retainedMarginPerClient: toNumber(values.retainedMarginPerClient),
-    closingRatePercent: toNumber(values.closingRatePercent),
+    closingRatePercent: toNumber(values.closingRateOutOfTen) * 10,
     landingPageConversionPercent: toNumber(values.landingPageConversionPercent),
     costPerClick: toNumber(values.costPerClick),
   }
@@ -85,6 +90,28 @@ function Metric({ label, value }: { label: string; value: string }) {
       <strong>{value}</strong>
       <span>{label}</span>
     </p>
+  )
+}
+
+function Field({
+  id,
+  label,
+  description,
+  children,
+  wide = false,
+}: {
+  id: string
+  label: string
+  description: string
+  children: ReactNode
+  wide?: boolean
+}) {
+  return (
+    <div className={`field${wide ? ' field-wide' : ''}`}>
+      <label htmlFor={id}>{label}</label>
+      <small id={`${id}-description`}>{description}</small>
+      {children}
+    </div>
   )
 }
 
@@ -119,9 +146,8 @@ function SummaryContent({
         <p className="result-kicker">Étape 02 · Valeur et marge</p>
         <h2 className="result-title">Votre marge disponible</h2>
         <p className="result-reason">
-          {results.hasAcquisitionMargin
-            ? `Après la marge à conserver, vous pouvez consacrer jusqu’à ${formatCurrency(results.maximumAcceptableCpa)} à l’acquisition d’un client.`
-            : 'Votre marge brute ne couvre pas la marge que vous souhaitez conserver. Aucune marge n’est disponible pour l’acquisition.'}
+          Après déduction de la marge à conserver, le CAC maximum acceptable est de{' '}
+          {formatCurrency(results.maximumAcceptableCpa)} par client.
         </p>
         <div className="result-metrics">
           <Metric
@@ -137,12 +163,8 @@ function SummaryContent({
             value={formatCurrency(inputs.retainedMarginPerClient)}
           />
           <Metric
-            label="CPA maximum acceptable"
-            value={
-              results.hasAcquisitionMargin
-                ? formatCurrency(results.maximumAcceptableCpa)
-                : 'Aucune marge'
-            }
+            label="CAC maximum acceptable"
+            value={formatCurrency(results.maximumAcceptableCpa)}
           />
         </div>
       </>
@@ -156,13 +178,13 @@ function SummaryContent({
         <h2 className="result-title">Les prospects à convertir</h2>
         <p className="result-reason">
           {results.requiredLeads === null
-            ? 'Saisissez un taux de conversion supérieur à 0 % pour estimer le nombre de prospects requis.'
+            ? 'Indiquez combien de prospects sur 10 deviennent clients pour estimer le nombre de prospects requis.'
             : `Pour obtenir ${target} nouveaux clients ${period}, il faudrait environ ${formatCount(results.requiredLeads)} prospects.`}
         </p>
         <div className="result-metrics">
           <Metric
-            label="Taux de conversion des prospects"
-            value={formatPercent(inputs.closingRatePercent)}
+            label="Prospects qui deviennent clients"
+            value={formatOutOfTen(inputs.closingRatePercent)}
           />
           <Metric label="Prospects requis" value={formatCount(results.requiredLeads)} />
         </div>
@@ -184,18 +206,15 @@ function SummaryContent({
       {results.estimatedCpa !== null && (
         <div className="result-comparison">
           <div>
-            <span>CPA estimé</span>
+            <span>CAC estimé</span>
             <strong>{formatCurrency(results.estimatedCpa)}</strong>
           </div>
           <span className="comparison-word">contre</span>
           <div>
-            <span>CPA maximum acceptable</span>
+            <span>CAC maximum acceptable</span>
             <strong>{formatCurrency(results.maximumAcceptableCpa)}</strong>
           </div>
         </div>
-      )}
-      {!results.hasAcquisitionMargin && (
-        <p className="summary-note">Aucune marge n’est disponible pour financer l’acquisition.</p>
       )}
       <div className="result-metrics">
         <Metric
@@ -208,6 +227,118 @@ function SummaryContent({
         <Metric label="Budget média estimé" value={formatCurrency(results.estimatedBudget)} />
       </div>
     </>
+  )
+}
+
+function InlineMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <strong>{value}</strong>
+      <small>{label}</small>
+    </div>
+  )
+}
+
+function InlineStepSummary({
+  step,
+  inputs,
+  results,
+}: {
+  step: StepNumber
+  inputs: CalculatorInputs
+  results: ScenarioResults
+}) {
+  const target = formatCount(inputs.targetClients)
+  const period = periodLabels[inputs.period]
+
+  if (step === 1) {
+    return (
+      <div className="section-summary" role="group" aria-label="Résumé de l’objectif">
+        <p>
+          Vous visez l’acquisition de{' '}
+          <strong>
+            {target} nouveaux clients {period}
+          </strong>
+          .
+        </p>
+        <div className="summary-metrics">
+          <InlineMetric label="Clients visés" value={target} />
+          <InlineMetric label="Rythme visé" value={periodNames[inputs.period]} />
+        </div>
+      </div>
+    )
+  }
+
+  if (step === 2) {
+    return (
+      <div className="section-summary" role="group" aria-label="Résumé de la marge">
+        <p>
+          La marge brute estimée est de{' '}
+          <strong>{formatCurrency(results.grossMarginPerClient)} par client</strong>. Après
+          déduction de la marge à conserver, le CAC maximum acceptable est de{' '}
+          <strong>{formatCurrency(results.maximumAcceptableCpa)} par client</strong>.
+        </p>
+        <div className="summary-metrics">
+          <InlineMetric
+            label="CA moyen par client"
+            value={formatCurrency(inputs.averageRevenuePerClient)}
+          />
+          <InlineMetric
+            label="Marge brute par client"
+            value={formatCurrency(results.grossMarginPerClient)}
+          />
+          <InlineMetric
+            label="Marge à conserver"
+            value={formatCurrency(inputs.retainedMarginPerClient)}
+          />
+          <InlineMetric
+            label="CAC max acceptable"
+            value={formatCurrency(results.maximumAcceptableCpa)}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  if (step === 3) {
+    return (
+      <div className="section-summary" role="group" aria-label="Résumé des prospects">
+        <p>
+          {results.requiredLeads === null
+            ? 'Indiquez combien de prospects sur 10 deviennent clients pour estimer le nombre de prospects requis.'
+            : `Pour obtenir ${target} nouveaux clients ${period}, il faudrait environ ${formatCount(results.requiredLeads)} prospects.`}
+        </p>
+        <div className="summary-metrics">
+          <InlineMetric
+            label="Prospects qui deviennent clients"
+            value={formatOutOfTen(inputs.closingRatePercent)}
+          />
+          <InlineMetric label="Prospects requis" value={formatCount(results.requiredLeads)} />
+        </div>
+      </div>
+    )
+  }
+
+  const trafficUnavailable = results.requiredClicks === null || results.estimatedBudget === null
+
+  return (
+    <div className="section-summary" role="group" aria-label="Résumé du trafic et du budget">
+      <p>
+        {trafficUnavailable
+          ? 'Saisissez des taux de conversion supérieurs à 0 % pour estimer le trafic et le budget.'
+          : `Avec un taux de conversion de page de ${formatPercent(inputs.landingPageConversionPercent)}, il faudrait environ ${formatCount(results.requiredClicks)} clics. Le budget estimé est de ${formatCurrency(results.estimatedBudget)}${results.estimatedCpa !== null ? `, soit un CAC estimé de ${formatCurrency(results.estimatedCpa)}.` : '.'}`}
+      </p>
+      <div className="summary-metrics">
+        <InlineMetric
+          label="Conversion de la page"
+          value={formatPercent(inputs.landingPageConversionPercent)}
+        />
+        <InlineMetric label="CPC estimé" value={formatCurrency(inputs.costPerClick)} />
+        <InlineMetric label="CPL estimé" value={formatCurrency(results.costPerLead)} />
+        <InlineMetric label="Clics requis" value={formatCount(results.requiredClicks)} />
+        <InlineMetric label="Budget média estimé" value={formatCurrency(results.estimatedBudget)} />
+      </div>
+    </div>
   )
 }
 
@@ -283,236 +414,265 @@ export function CalculatorIsland() {
     }
   }, [])
 
-  const updateNumber = (field: NumericField, event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.currentTarget.value
-    setFormValues((current) => ({ ...current, [field]: value }))
+  const updateNumber = (field: NumericField, value: string | number) => {
+    setFormValues((current) => ({ ...current, [field]: String(value) }))
   }
 
   const mobileSummary = (step: StepNumber) => (
-    <StepSummary step={step} inputs={inputs} results={results} className="mobile-step-summary" />
+    <InlineStepSummary step={step} inputs={inputs} results={results} />
   )
 
   return (
-    <div className="calculator-layout">
-      <form
-        className="calculator"
-        aria-label="Hypothèses de votre scénario Google Ads"
-        onSubmit={(event) => event.preventDefault()}
-      >
-        <section className="step" id="step-1" data-step="1" aria-labelledby="step-1-title">
-          <span className="step-number" aria-hidden="true">
-            01
-          </span>
-          <div className="step-content">
-            <header className="step-heading">
-              <h2 id="step-1-title">Votre objectif de vente</h2>
-              <p>
-                Commençons par préciser le volume de clients que vous visez et le rythme souhaité.
-              </p>
-            </header>
-            <div className="fields two-columns">
-              <label className="field" htmlFor="target-clients">
-                <span>Nouveaux clients visés</span>
-                <small>Combien de nouveaux clients souhaitez-vous obtenir ?</small>
-                <span className="input-shell">
-                  <input
-                    id="target-clients"
-                    type="number"
-                    value={formValues.targetClients}
-                    min="1"
-                    step="1"
-                    inputMode="numeric"
-                    onChange={(event) => updateNumber('targetClients', event)}
-                  />
-                  <span className="unit">clients</span>
-                </span>
-              </label>
-              <label className="field" htmlFor="target-period">
-                <span>Période</span>
-                <small>À quel rythme souhaitez-vous atteindre cet objectif ?</small>
-                <select
-                  id="target-period"
-                  value={formValues.period}
-                  onChange={(event) => {
-                    const period = event.currentTarget.value as Period
-                    setFormValues((current) => ({ ...current, period }))
-                  }}
+    <MantineProvider>
+      <div className="calculator-layout">
+        <form
+          className="calculator"
+          aria-label="Hypothèses de votre scénario Google Ads"
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <section className="step" id="step-1" data-step="1" aria-labelledby="step-1-title">
+            <span className="step-number" aria-hidden="true">
+              01
+            </span>
+            <div className="step-content">
+              <header className="step-heading">
+                <h2 id="step-1-title">Votre objectif de vente</h2>
+                <p>
+                  Commençons par préciser le nombre de clients visé, la période souhaitée et le
+                  chiffre d’affaires moyen par client.
+                </p>
+              </header>
+              <div className="fields two-columns">
+                <Field
+                  id="target-clients"
+                  label="Nouveaux clients visés"
+                  description="Combien de nouveaux clients souhaitez-vous obtenir ?"
                 >
-                  <option value="month">Par mois</option>
-                  <option value="quarter">Par trimestre</option>
-                  <option value="year">Par an</option>
-                </select>
-              </label>
-            </div>
-            {mobileSummary(1)}
-          </div>
-        </section>
-
-        <section className="step" id="step-2" data-step="2" aria-labelledby="step-2-title">
-          <span className="step-number" aria-hidden="true">
-            02
-          </span>
-          <div className="step-content">
-            <header className="step-heading">
-              <h2 id="step-2-title">Valeur client et marge à préserver</h2>
-              <p>
-                Établissons ce qu’un client rapporte à votre entreprise et la marge que vous
-                souhaitez conserver après l’acquisition.
-              </p>
-            </header>
-            <div className="fields two-columns">
-              <label className="field" htmlFor="average-revenue">
-                <span>Chiffre d’affaires moyen par nouveau client</span>
-                <small>Montant moyen facturé ou généré lorsqu’un nouveau client achète.</small>
-                <span className="input-shell">
-                  <input
+                  <NumberInput
+                    id="target-clients"
+                    aria-describedby="target-clients-description"
+                    size="xl"
+                    hideControls
+                    clampBehavior="none"
+                    value={formValues.targetClients}
+                    min={1}
+                    step={1}
+                    inputMode="numeric"
+                    onChange={(value) => updateNumber('targetClients', value)}
+                    rightSection={<span className="unit">clients</span>}
+                    rightSectionWidth={72}
+                    rightSectionPointerEvents="none"
+                  />
+                </Field>
+                <Field
+                  id="target-period"
+                  label="Période"
+                  description="À quel rythme souhaitez-vous atteindre cet objectif ?"
+                >
+                  <Select
+                    id="target-period"
+                    aria-describedby="target-period-description"
+                    size="xl"
+                    allowDeselect={false}
+                    value={formValues.period}
+                    data={[
+                      { value: 'month', label: 'Par mois' },
+                      { value: 'quarter', label: 'Par trimestre' },
+                      { value: 'year', label: 'Par an' },
+                    ]}
+                    onChange={(value) => {
+                      if (!value) return
+                      setFormValues((current) => ({ ...current, period: value as Period }))
+                    }}
+                  />
+                </Field>
+                <Field
+                  id="average-revenue"
+                  label="Chiffre d’affaires moyen par nouveau client"
+                  description="Montant moyen facturé ou généré lorsqu’un nouveau client achète."
+                >
+                  <NumberInput
                     id="average-revenue"
-                    type="number"
+                    aria-describedby="average-revenue-description"
+                    size="xl"
+                    hideControls
+                    clampBehavior="none"
                     value={formValues.averageRevenuePerClient}
-                    min="0"
+                    min={0}
                     inputMode="decimal"
-                    onChange={(event) => updateNumber('averageRevenuePerClient', event)}
+                    onChange={(value) => updateNumber('averageRevenuePerClient', value)}
+                    rightSection={<span className="unit">€</span>}
+                    rightSectionWidth={48}
+                    rightSectionPointerEvents="none"
                   />
-                  <span className="unit">€</span>
-                </span>
-              </label>
-              <label className="field" htmlFor="gross-margin">
-                <span>Marge moyenne</span>
-                <small>
-                  Part du chiffre d’affaires qui reste après les coûts directement liés au produit
-                  ou à la prestation.
-                </small>
-                <span className="input-shell">
-                  <input
+                </Field>
+              </div>
+              {mobileSummary(1)}
+            </div>
+          </section>
+
+          <section className="step" id="step-2" data-step="2" aria-labelledby="step-2-title">
+            <span className="step-number" aria-hidden="true">
+              02
+            </span>
+            <div className="step-content">
+              <header className="step-heading">
+                <h2 id="step-2-title">Marge à préserver</h2>
+                <p>
+                  Précisons la marge brute et celle que vous souhaitez conserver après
+                  l’acquisition.
+                </p>
+              </header>
+              <div className="fields two-columns">
+                <Field
+                  id="gross-margin"
+                  label="Marge brute"
+                  description="Part du chiffre d’affaires qui reste après les coûts directement liés au produit ou à la prestation."
+                >
+                  <NumberInput
                     id="gross-margin"
-                    type="number"
+                    aria-describedby="gross-margin-description"
+                    size="xl"
+                    hideControls
+                    clampBehavior="none"
                     value={formValues.grossMarginPercent}
-                    min="0"
-                    max="100"
+                    min={0}
+                    max={100}
                     inputMode="decimal"
-                    onChange={(event) => updateNumber('grossMarginPercent', event)}
+                    onChange={(value) => updateNumber('grossMarginPercent', value)}
+                    rightSection={<span className="unit">%</span>}
+                    rightSectionWidth={48}
+                    rightSectionPointerEvents="none"
                   />
-                  <span className="unit">%</span>
-                </span>
-              </label>
-              <label className="field field-wide" htmlFor="retained-margin">
-                <span>Marge minimale par client</span>
-                <small>
-                  Quelle marge souhaitez-vous conserver au minimum après l’acquisition d’un nouveau
-                  client ?
-                </small>
-                <span className="input-shell">
-                  <input
+                </Field>
+                <Field
+                  id="retained-margin"
+                  label="Marge minimale par client"
+                  description="Quelle marge souhaitez-vous conserver au minimum après l’acquisition d’un nouveau client ?"
+                  wide
+                >
+                  <NumberInput
                     id="retained-margin"
-                    type="number"
+                    aria-describedby="retained-margin-description"
+                    size="xl"
+                    hideControls
+                    clampBehavior="none"
                     value={formValues.retainedMarginPerClient}
-                    min="0"
+                    min={0}
                     inputMode="decimal"
-                    onChange={(event) => updateNumber('retainedMarginPerClient', event)}
+                    onChange={(value) => updateNumber('retainedMarginPerClient', value)}
+                    rightSection={<span className="unit">€</span>}
+                    rightSectionWidth={48}
+                    rightSectionPointerEvents="none"
                   />
-                  <span className="unit">€</span>
-                </span>
-              </label>
+                </Field>
+              </div>
+              {mobileSummary(2)}
             </div>
-            {mobileSummary(2)}
-          </div>
-        </section>
+          </section>
 
-        <section className="step" id="step-3" data-step="3" aria-labelledby="step-3-title">
-          <span className="step-number" aria-hidden="true">
-            03
-          </span>
-          <div className="step-content">
-            <header className="step-heading">
-              <h2 id="step-3-title">De la demande au client</h2>
-              <p>
-                Toutes les personnes réellement intéressées ne deviennent pas clientes. Prenons
-                cette réalité en compte.
-              </p>
-            </header>
-            <div className="fields">
-              <label className="field" htmlFor="closing-rate">
-                <span>Taux de conversion des prospects en clients</span>
-                <small>
-                  Sur 10 personnes réellement intéressées, combien deviennent clientes ?
-                </small>
-                <span className="input-shell">
-                  <input
+          <section className="step" id="step-3" data-step="3" aria-labelledby="step-3-title">
+            <span className="step-number" aria-hidden="true">
+              03
+            </span>
+            <div className="step-content">
+              <header className="step-heading">
+                <h2 id="step-3-title">De la demande au client</h2>
+                <p>Parlons de la part de vos prospects qui deviennent des clients.</p>
+              </header>
+              <div className="fields">
+                <Field
+                  id="closing-rate"
+                  label="Prospects convertis en clients"
+                  description="En moyenne, sur 10 prospects, combien deviennent des clients ?"
+                >
+                  <NumberInput
                     id="closing-rate"
-                    type="number"
-                    value={formValues.closingRatePercent}
-                    min="0"
-                    max="100"
+                    aria-describedby="closing-rate-description"
+                    size="xl"
+                    hideControls
+                    clampBehavior="strict"
+                    value={formValues.closingRateOutOfTen}
+                    min={0}
+                    max={10}
+                    step={0.1}
                     inputMode="decimal"
-                    onChange={(event) => updateNumber('closingRatePercent', event)}
+                    onChange={(value) => updateNumber('closingRateOutOfTen', value)}
+                    rightSection={<span className="unit">sur 10</span>}
+                    rightSectionWidth={64}
+                    rightSectionPointerEvents="none"
                   />
-                  <span className="unit">%</span>
-                </span>
-              </label>
+                </Field>
+              </div>
+              {mobileSummary(3)}
             </div>
-            {mobileSummary(3)}
-          </div>
-        </section>
+          </section>
 
-        <section className="step" id="step-4" data-step="4" aria-labelledby="step-4-title">
-          <span className="step-number" aria-hidden="true">
-            04
-          </span>
-          <div className="step-content">
-            <header className="step-heading">
-              <h2 id="step-4-title">Google Ads</h2>
-              <p>
-                Relions maintenant votre objectif commercial au trafic nécessaire pour l’atteindre.
-              </p>
-            </header>
-            <div className="fields two-columns">
-              <label className="field" htmlFor="landing-conversion">
-                <span>Taux de conversion de la page</span>
-                <small>Sur 100 visiteurs de votre page, combien prennent contact ?</small>
-                <span className="input-shell">
-                  <input
+          <section className="step" id="step-4" data-step="4" aria-labelledby="step-4-title">
+            <span className="step-number" aria-hidden="true">
+              04
+            </span>
+            <div className="step-content">
+              <header className="step-heading">
+                <h2 id="step-4-title">Google Ads</h2>
+                <p>
+                  Relions maintenant votre objectif commercial au trafic nécessaire pour
+                  l’atteindre.
+                </p>
+              </header>
+              <div className="fields two-columns">
+                <Field
+                  id="landing-conversion"
+                  label="Taux de conversion de la page"
+                  description="Sur 100 visiteurs de votre page, combien prennent contact ?"
+                >
+                  <NumberInput
                     id="landing-conversion"
-                    type="number"
+                    aria-describedby="landing-conversion-description"
+                    size="xl"
+                    hideControls
+                    clampBehavior="none"
                     value={formValues.landingPageConversionPercent}
-                    min="0"
-                    max="100"
+                    min={0}
+                    max={100}
                     inputMode="decimal"
-                    onChange={(event) => updateNumber('landingPageConversionPercent', event)}
+                    onChange={(value) => updateNumber('landingPageConversionPercent', value)}
+                    rightSection={<span className="unit">%</span>}
+                    rightSectionWidth={48}
+                    rightSectionPointerEvents="none"
                   />
-                  <span className="unit">%</span>
-                </span>
-              </label>
-              <label className="field" htmlFor="cost-per-click">
-                <span>Coût estimé par clic</span>
-                <small>
-                  Combien pensez-vous payer en moyenne lorsqu’une personne clique sur votre annonce
-                  ?
-                </small>
-                <span className="input-shell">
-                  <input
+                </Field>
+                <Field
+                  id="cost-per-click"
+                  label="Coût estimé par clic"
+                  description="Combien pensez-vous payer en moyenne lorsqu’une personne clique sur votre annonce ?"
+                >
+                  <NumberInput
                     id="cost-per-click"
-                    type="number"
+                    aria-describedby="cost-per-click-description"
+                    size="xl"
+                    hideControls
+                    clampBehavior="none"
                     value={formValues.costPerClick}
-                    min="0"
-                    step="0.1"
+                    min={0}
+                    step={0.1}
                     inputMode="decimal"
-                    onChange={(event) => updateNumber('costPerClick', event)}
+                    onChange={(value) => updateNumber('costPerClick', value)}
+                    rightSection={<span className="unit">€</span>}
+                    rightSectionWidth={48}
+                    rightSectionPointerEvents="none"
                   />
-                  <span className="unit">€</span>
-                </span>
-              </label>
+                </Field>
+              </div>
+              {mobileSummary(4)}
             </div>
-            <button className="helper-link" type="button">
-              <span aria-hidden="true">?</span> Je ne connais pas ce chiffre
-            </button>
-            {mobileSummary(4)}
-          </div>
-        </section>
-      </form>
+          </section>
+        </form>
 
-      <aside className="result-panel" aria-label="Résumé de votre scénario">
-        <StepSummary step={activeStep} inputs={inputs} results={results} />
-      </aside>
-    </div>
+        <aside className="result-panel" aria-label="Résumé de votre scénario">
+          <StepSummary step={activeStep} inputs={inputs} results={results} />
+        </aside>
+      </div>
+    </MantineProvider>
   )
 }

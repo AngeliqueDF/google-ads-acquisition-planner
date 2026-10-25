@@ -34,6 +34,8 @@
   },
   "dependencies": {
     "@astrojs/react": "^7.1.1",
+    "@mantine/core": "^9.7.3",
+    "@mantine/hooks": "^9.7.3",
     "open-props": "^1.7.23",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
