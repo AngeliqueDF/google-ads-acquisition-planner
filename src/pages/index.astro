@@ -1,4 +1,5 @@
 ---
+import '@mantine/core/styles.css'
 import '../styles/global.css'
 import { CalculatorIsland } from '../components/calculator/CalculatorIsland'
 ---
@@ -11,6 +12,12 @@ import { CalculatorIsland } from '../components/calculator/CalculatorIsland'
     <meta
       name="description"
       content="Estimez gratuitement le budget nécessaire pour vos campagnes Google Ads. Calculez votre CAC maximum acceptable, votre CPL et le nombre de prospects requis pour atteindre vos objectifs de vente."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
     />
     <title>Calculateur de Budget Google Ads : Estimez votre CAC et votre Rentabilité</title>
     <script type="application/ld+json" is:inline>
@@ -69,75 +76,162 @@ import { CalculatorIsland } from '../components/calculator/CalculatorIsland'
     </script>
   </head>
   <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Accueil Google Ads Acquisition Planner">
+          <span class="brand-mark" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+          <span>Ads / Planner</span>
+        </a>
+        <div class="header-actions">
+          <span class="header-note">Outil gratuit · Sans inscription</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero-screen">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Google Ads Acquisition Planner</p>
+        <h1 id="page-title">Combien investir sur Google Ads pour atteindre vos objectifs ?</h1>
+        <p class="hero-copy">
+          Un point de départ pour échanger avec votre spécialiste.
+          <br class="desktop-only" /> Partez de votre objectif commercial et remontez jusqu’au
+          budget nécessaire.
+        </p>
+
+        <ol class="hero-steps" aria-label="Les 4 étapes du parcours">
+          <li>
+            <span class="hero-step-number">01</span>
+            <strong>Objectif de vente</strong>
+          </li>
+          <li>
+            <span class="hero-step-number">02</span>
+            <strong>Valeur & rentabilité</strong>
+          </li>
+          <li>
+            <span class="hero-step-number">03</span>
+            <strong>Conversion commerciale</strong>
+          </li>
+          <li>
+            <span class="hero-step-number">04</span>
+            <strong>Acquisition Google Ads</strong>
+          </li>
+        </ol>
+      </section>
+
+      <section class="tool-intro" aria-label="Déroulement du calculateur">
+        <p>
+          <strong>4 étapes · environ 3 minutes.</strong>
+        </p>
+        <p>
+          Rendez visibles vos hypothèses pour comprendre le budget, les clics et les prospects
+          nécessaires.
+        </p>
+      </section>
+    </div>
+
     <main>
-      <h1>Google Ads Acquisition Planner</h1>
-      <p>Simulateur et planificateur d'acquisition pour campagnes Google Ads.</p>
       <CalculatorIsland client:load />
 
       <section class="method" aria-labelledby="method-title">
-        <h2 id="method-title">La logique derrière le résultat</h2>
-        <p>
-          Le CAC est un repère utile pour évaluer le coût d’acquisition de nouveaux clients. Pour
-          cadrer un budget Google Ads, le calculateur part de votre objectif de vente et de vos
-          hypothèses de marge pour déterminer le CAC maximum acceptable. Il croise ensuite ce
-          chiffre avec le taux de closing, le taux de conversion de la page et une hypothèse de CPC
-          afin d’estimer le budget média et de comparer le CAC estimé au CAC maximum acceptable.
-        </p>
+        <div>
+          <p class="eyebrow">La logique derrière le résultat</p>
+          <h2 id="method-title">
+            Un modèle simple,
+            <br />
+            pour décider plus clairement.
+          </h2>
+          <p>
+            Le CAC est un repère utile pour évaluer le coût d’acquisition de nouveaux clients. Pour
+            cadrer un budget Google Ads, le calculateur part de votre objectif de vente et de vos
+            hypothèses de marge pour déterminer le CAC maximum acceptable. Il croise ensuite ce
+            chiffre avec le taux de closing, le taux de conversion de la page et une hypothèse de
+            CPC afin d’estimer le budget média et de comparer le CAC estimé au CAC maximum
+            acceptable.
+          </p>
+        </div>
+        <div class="method-copy">
+          <p>
+            Le calcul part de votre objectif de vente et remonte jusqu’au coût que vous pouvez
+            accepter pour générer un clic.
+          </p>
+          <ul>
+            <li>
+              <p>
+                <strong>Objectif de vente</strong>Nombre de clients souhaités et rythme visé pour
+                votre activité.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Valeur et marge</strong>Chiffre d’affaires, marge brute et part de marge à
+                conserver par client.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Conversion commerciale</strong>Part des personnes intéressées qui deviennent
+                réellement clientes.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Acquisition Google Ads</strong>Trafic et budget nécessaires selon votre page
+                et votre coût par clic.
+              </p>
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section class="faq" aria-labelledby="faq-title">
-        <h2 id="faq-title">Questions fréquentes</h2>
-        <article class="faq-item">
-          <h3>Où trouver une estimation du CPC&nbsp;?</h3>
-          <p>
-            Utilisez le planificateur de mots-clés Google Ads ou partez d’une hypothèse prudente,
-            puis testez plusieurs scénarios.
-          </p>
-        </article>
-        <article class="faq-item">
-          <h3>Quelle est la différence entre CPA et CAC&nbsp;?</h3>
-          <p>
-            Le CPA (coût par acquisition) est le coût moyen d’une conversion suivie par la
-            plateforme publicitaire, qui peut être un lead ou une vente. Dans ce calculateur, le CAC
-            (coût d’acquisition client) est le coût média estimé pour acquérir un client via la
-            campagne, en tenant compte du taux de closing. Si la conversion Google Ads suivie est
-            une vente et que l’on compare le même coût média, le CPA et le CAC peuvent être
-            identiques. Si la conversion suivie est un lead et qu’une partie des leads ne devient
-            pas cliente, le CAC est supérieur au CPA.
-          </p>
-        </article>
-        <article class="faq-item">
-          <h3>Ces résultats garantissent-ils la rentabilité&nbsp;?</h3>
-          <p>
-            Non. Ils servent à cadrer un échange. Les résultats réels dépendront notamment de votre
-            marché, de vos annonces et de votre page d’atterrissage.
-          </p>
-        </article>
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 id="faq-title">Avant de lancer vos campagnes</h2>
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>Où trouver une estimation du CPC&nbsp;?</h3>
+            <p>
+              Utilisez le planificateur de mots-clés Google Ads ou partez d’une hypothèse prudente,
+              puis testez plusieurs scénarios.
+            </p>
+          </article>
+          <article class="faq-item">
+            <h3>Quelle est la différence entre CPA et CAC&nbsp;?</h3>
+            <p>
+              Le CPA (coût par acquisition) est le coût moyen d’une conversion suivie par la
+              plateforme publicitaire, qui peut être un lead ou une vente. Dans ce calculateur, le
+              CAC (coût d’acquisition client) est le coût média estimé pour acquérir un client via
+              la campagne, en tenant compte du taux de closing. Si la conversion Google Ads suivie
+              est une vente et que l’on compare le même coût média, le CPA et le CAC peuvent être
+              identiques. Si la conversion suivie est un lead et qu’une partie des leads ne devient
+              pas cliente, le CAC est supérieur au CPA.
+            </p>
+          </article>
+          <article class="faq-item">
+            <h3>Ces résultats garantissent-ils la rentabilité&nbsp;?</h3>
+            <p>
+              Non. Ils servent à cadrer un échange. Les résultats réels dépendront notamment de
+              votre marché, de vos annonces et de votre page d’atterrissage.
+            </p>
+          </article>
+        </div>
       </section>
     </main>
+
+    <footer>
+      <a class="brand" href="/" aria-label="Accueil Google Ads Acquisition Planner">
+        <span>Ads / Planner</span>
+      </a>
+      <p>Un point de départ pour échanger sur vos objectifs d’acquisition.</p>
+      <p class="footer-credit">
+        Made by{' '}
+        <a href="https://angeliquedf.dev/" target="_blank" rel="noopener noreferrer">
+          Angélique D. Faye
+        </a>
+      </p>
+    </footer>
   </body>
 </html>
-
-<style>
-  main {
-    display: grid;
-    place-content: center;
-    min-height: 100vh;
-    padding: 1rem;
-    text-align: center;
-    gap: 0.5rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #212529;
-    margin: 0;
-  }
-
-  p {
-    color: #6c757d;
-    font-size: 1.25rem;
-    margin: 0;
-  }
-</style>
