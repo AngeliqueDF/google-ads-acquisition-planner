@@ -10,9 +10,19 @@ A Google Ads acquisition scenario planner in development. This portfolio project
 
 The public page is currently a work in progress. The planner is not available yet.
 
+The project is currently in the **UX/UI design and copywriting refinement phase**. The four-step acquisition journey, plain-language copywriting, and mental models connecting business viability to ad budget are being refined in Astro before implementing the interactive React calculator island.
+
 The project overview and product framing are published at [Google Ads Acquisition Planner on angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
 The planned first version will help Google Ads specialists build an acquisition scenario with a prospect, starting from a business goal. Planned scenarios include quote inquiries, the steps after a click and after a conversion, and the assumptions connecting budget to expected outcomes. Company history may complement market benchmarks when those capabilities are developed.
+
+### Product and UX design
+
+The interface is designed for live consultations between a Google Ads specialist and a business owner:
+
+- **Inverted acquisition flow:** Rather than asking for advertising spend first, the planner starts from business reality (customer value, gross margin, minimum profitability to preserve) and works backward to the required traffic and allowable ad budget.
+- **Progressive copywriting:** Questions use plain business vocabulary (_nouveaux clients, marge, personnes intéressées_). Each section produces a contextual synthesis sentence explaining what the figures mean, while technical PPC metrics (`CPA`, `CPC`, `CVR`) are secondary summary badges for specialist review.
+- **Ergonomics and accessibility:** Form controls prioritize clear labels, accessible helpers, and sensible keyboard navigation before adding rich interactive controls.
 
 ### Engineering approach
 
@@ -110,9 +120,19 @@ Un planificateur de scénarios d’acquisition Google Ads en cours de développe
 
 La page publique est actuellement une page en cours de réalisation. Le planificateur n’est pas encore disponible.
 
+Le projet est actuellement dans sa **phase de conception UX/UI et d’ajustement de la rédaction**. Le parcours d’acquisition en quatre étapes, les choix de vocabulaire accessible et les modèles économiques reliant viabilité commerciale et budget publicitaire sont testés et affinés dans Astro avant le développement de l’îlot interactif React.
+
 La présentation générale et le cadrage du projet sont disponibles sur [Google Ads Acquisition Planner sur angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
 La première version prévue aidera les spécialistes Google Ads à construire un scénario d’acquisition avec un prospect, à partir d’un objectif commercial. Les scénarios prévus incluent les demandes de devis, les étapes après le clic et après la conversion, ainsi que les hypothèses reliant le budget aux résultats attendus. Les données historiques de l’entreprise pourront compléter les benchmarks lorsque ces fonctionnalités seront développées.
+
+### Conception produit et UX
+
+L’interface est pensée pour des échanges en direct entre un spécialiste Google Ads et un dirigeant d’entreprise :
+
+- **Entonnoir d’acquisition inversé :** Plutôt que de demander un budget publicitaire en amont, l’outil part de la réalité économique de l’entreprise (valeur client, marge brute, rentabilité minimale à préserver) et remonte jusqu’au trafic et au budget publicitaire acceptable.
+- **Rédaction progressive :** Les questions privilégient un vocabulaire métier simple (_nouveaux clients, marge, personnes intéressées_). Chaque étape produit une phrase de synthèse contextualisée, tandis que le jargon technique PPC (`CPA`, `CPC`, `CVR`) est réservé à des badges secondaires pour la lecture experte.
+- **Ergonomie et accessibilité :** Les champs de formulaire mettent l’accent sur des labels clairs, des aides à la saisie accessibles et une navigation clavier fluide avant l’intégration de composants interactifs riches.
 
 ### Approche technique
 
