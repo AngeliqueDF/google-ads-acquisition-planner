@@ -189,12 +189,11 @@ h1 {
   min-width: 0;
 }
 .step {
-  /* min-height: calc(100vh - 64px); */
-  min-height: calc(100vh);
+  min-height: 75vh;
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr);
   column-gap: var(--size-6);
-  align-content: start;
+  align-content: stretch;
   box-sizing: border-box;
   padding: max(var(--size-8), 10vh) 0 var(--size-8);
 }
@@ -216,6 +215,7 @@ h1 {
 .step-content {
   grid-column: 2;
   display: grid;
+  grid-template-rows: auto auto 1fr;
   gap: var(--size-7);
   min-width: 0;
 }
@@ -247,13 +247,14 @@ h1 {
 .two-columns {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.field-wide {
-  grid-column: 1/-1;
-  max-width: calc(50% - 8px);
-}
 .field {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 9px;
+}
+.field-control {
+  width: 100%;
+  margin-top: auto;
 }
 .field > label {
   font-size: var(--font-size-1);
@@ -342,6 +343,7 @@ h1 {
 }
 .section-summary {
   display: grid;
+  align-self: end;
   gap: var(--size-3);
   margin-top: 0;
   padding: 0;
@@ -473,9 +475,11 @@ footer p {
   .step {
     display: grid;
     grid-template-columns: var(--size-8) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
     row-gap: var(--size-4);
     column-gap: var(--size-4);
-    min-height: calc(100vh - 64px);
+    min-height: calc(75vh - 64px);
+    align-content: stretch;
     padding: var(--size-5) 0 var(--size-8);
   }
   .step-number {
@@ -535,10 +539,6 @@ footer p {
   }
   .two-columns {
     grid-template-columns: 1fr;
-  }
-  .field-wide {
-    grid-column: auto;
-    max-width: none;
   }
   .tool-intro {
     grid-template-columns: 1fr;

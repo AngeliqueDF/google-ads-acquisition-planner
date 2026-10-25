@@ -98,16 +98,14 @@ function Field({
   label,
   description,
   children,
-  wide = false,
 }: {
   id: string
   label: string
   description: string
   children: ReactNode
-  wide?: boolean
 }) {
   return (
-    <div className={`field${wide ? ' field-wide' : ''}`}>
+    <div className="field">
       <label htmlFor={id}>{label}</label>
       <small id={`${id}-description`}>{description}</small>
       {children}
@@ -450,6 +448,7 @@ export function CalculatorIsland() {
                 >
                   <NumberInput
                     id="target-clients"
+                    className="field-control"
                     aria-describedby="target-clients-description"
                     size="xl"
                     hideControls
@@ -471,6 +470,7 @@ export function CalculatorIsland() {
                 >
                   <Select
                     id="target-period"
+                    className="field-control"
                     aria-describedby="target-period-description"
                     size="xl"
                     allowDeselect={false}
@@ -493,6 +493,7 @@ export function CalculatorIsland() {
                 >
                   <NumberInput
                     id="average-revenue"
+                    className="field-control"
                     aria-describedby="average-revenue-description"
                     size="xl"
                     hideControls
@@ -531,6 +532,7 @@ export function CalculatorIsland() {
                 >
                   <NumberInput
                     id="gross-margin"
+                    className="field-control"
                     aria-describedby="gross-margin-description"
                     size="xl"
                     hideControls
@@ -549,10 +551,10 @@ export function CalculatorIsland() {
                   id="retained-margin"
                   label="Marge minimale par client"
                   description="Quelle marge souhaitez-vous conserver au minimum après l’acquisition d’un nouveau client ?"
-                  wide
                 >
                   <NumberInput
                     id="retained-margin"
+                    className="field-control"
                     aria-describedby="retained-margin-description"
                     size="xl"
                     hideControls
@@ -580,7 +582,7 @@ export function CalculatorIsland() {
                 <h2 id="step-3-title">De la demande au client</h2>
                 <p>Parlons de la part de vos prospects qui deviennent des clients.</p>
               </header>
-              <div className="fields">
+              <div className="fields two-columns">
                 <Field
                   id="closing-rate"
                   label="Prospects convertis en clients"
@@ -588,6 +590,7 @@ export function CalculatorIsland() {
                 >
                   <NumberInput
                     id="closing-rate"
+                    className="field-control"
                     aria-describedby="closing-rate-description"
                     size="xl"
                     hideControls
@@ -628,6 +631,7 @@ export function CalculatorIsland() {
                 >
                   <NumberInput
                     id="landing-conversion"
+                    className="field-control"
                     aria-describedby="landing-conversion-description"
                     size="xl"
                     hideControls
@@ -649,6 +653,7 @@ export function CalculatorIsland() {
                 >
                   <NumberInput
                     id="cost-per-click"
+                    className="field-control"
                     aria-describedby="cost-per-click-description"
                     size="xl"
                     hideControls
