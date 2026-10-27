@@ -4,9 +4,9 @@ import {
   formatCurrency,
   formatOutOfTen,
   formatPercent,
-  periodLabels,
   periodNames,
 } from '../formatters'
+import { getOwnerFacingSummarySegments } from '../ownerFacingSummary'
 import type { StepNumber } from '../types'
 
 type InlineStepSummaryProps = {
@@ -24,21 +24,25 @@ function InlineMetric({ label, value }: { label: string; value: string }) {
   )
 }
 
+function OwnerFacingText({ step, inputs, results }: InlineStepSummaryProps) {
+  const segments = getOwnerFacingSummarySegments(step, inputs, results)
+
+  return (
+    <p>
+      {segments.map((segment, index) =>
+        segment.emphasis ? <strong key={index}>{segment.text}</strong> : segment.text,
+      )}
+    </p>
+  )
+}
+
 export function InlineStepSummary({ step, inputs, results }: InlineStepSummaryProps) {
   const target = formatCount(inputs.targetClients)
-  const period = periodLabels[inputs.period]
 
   if (step === 1) {
     return (
       <div className="section-summary" role="group" aria-label="Résumé de l’objectif">
-        <p>
-          Vous visez{' '}
-          <strong>
-            {target} nouveaux clients {period}
-          </strong>
-          , avec un chiffre d’affaires moyen de {formatCurrency(inputs.averageRevenuePerClient)} par
-          client.
-        </p>
+        <OwnerFacingText step={step} inputs={inputs} results={results} />
         <div className="summary-metrics">
           <InlineMetric label="Clients visés" value={target} />
           <InlineMetric label="Rythme visé" value={periodNames[inputs.period]} />
@@ -50,12 +54,7 @@ export function InlineStepSummary({ step, inputs, results }: InlineStepSummaryPr
   if (step === 2) {
     return (
       <div className="section-summary" role="group" aria-label="Résumé de la marge">
-        <p>
-          La marge brute estimée est de{' '}
-          <strong>{formatCurrency(results.grossMarginPerClient)} par client</strong>. Après
-          déduction de la marge à conserver, le CAC maximum acceptable est de{' '}
-          <strong>{formatCurrency(results.maximumAcceptableCpa)} par client</strong>.
-        </p>
+        <OwnerFacingText step={step} inputs={inputs} results={results} />
         <div className="summary-metrics">
           <InlineMetric
             label="CA moyen par client"
@@ -81,11 +80,7 @@ export function InlineStepSummary({ step, inputs, results }: InlineStepSummaryPr
   if (step === 3) {
     return (
       <div className="section-summary" role="group" aria-label="Résumé des prospects">
-        <p>
-          {results.requiredLeads === null
-            ? 'Indiquez combien de prospects sur 10 deviennent clients pour estimer le nombre de prospects requis.'
-            : `Pour obtenir ${target} nouveaux clients ${period}, il faudrait environ ${formatCount(results.requiredLeads)} prospects.`}
-        </p>
+        <OwnerFacingText step={step} inputs={inputs} results={results} />
         <div className="summary-metrics">
           <InlineMetric
             label="Prospects qui deviennent clients"
@@ -97,15 +92,9 @@ export function InlineStepSummary({ step, inputs, results }: InlineStepSummaryPr
     )
   }
 
-  const trafficUnavailable = results.requiredClicks === null || results.estimatedBudget === null
-
   return (
     <div className="section-summary" role="group" aria-label="Résumé du trafic et du budget">
-      <p>
-        {trafficUnavailable
-          ? 'Saisissez des taux de conversion supérieurs à 0 % pour estimer le trafic et le budget.'
-          : `Avec un taux de conversion de page de ${formatPercent(inputs.landingPageConversionPercent)}, il faudrait environ ${formatCount(results.requiredClicks)} clics (soit ${formatCurrency(results.estimatedBudget)} de budget) pour générer ${formatCount(results.requiredLeads)} prospects${results.estimatedCpa !== null ? `. Après application de votre taux de closing, cela représente un CAC de ${formatCurrency(results.estimatedCpa)}.` : '.'}`}
-      </p>
+      <OwnerFacingText step={step} inputs={inputs} results={results} />
       <div className="summary-metrics">
         <InlineMetric
           label="Conversion de la page"
