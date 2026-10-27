@@ -28,6 +28,7 @@ export function CalculatorIsland() {
           formValues={formValues}
           inputs={inputs}
           results={results}
+          activeStep={activeStep}
           onNumberChange={updateNumber}
           onPeriodChange={updatePeriod}
         />

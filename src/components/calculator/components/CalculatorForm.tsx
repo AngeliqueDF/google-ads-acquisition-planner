@@ -1,5 +1,6 @@
 import { NumberInput, Select } from '@mantine/core'
 import type { CalculatorInputs, Period, ScenarioResults } from '../../../lib/calculations'
+import { StepSummary } from './StepSummary'
 import { InlineStepSummary } from './InlineStepSummary'
 import { Field } from './Field'
 import type { FormValues, NumericField, StepNumber } from '../types'
@@ -8,6 +9,7 @@ type CalculatorFormProps = {
   formValues: FormValues
   inputs: CalculatorInputs
   results: ScenarioResults
+  activeStep: StepNumber
   onNumberChange: (field: NumericField, value: string | number) => void
   onPeriodChange: (period: Period) => void
 }
@@ -16,12 +18,19 @@ export function CalculatorForm({
   formValues,
   inputs,
   results,
+  activeStep,
   onNumberChange,
   onPeriodChange,
 }: CalculatorFormProps) {
   const mobileSummary = (step: StepNumber) => (
     <InlineStepSummary step={step} inputs={inputs} results={results} />
   )
+  const mobileResult = (step: StepNumber) =>
+    activeStep === step ? (
+      <div className="mobile-result-panel">
+        <StepSummary step={step} inputs={inputs} results={results} />
+      </div>
+    ) : null
 
   return (
     <form
@@ -110,6 +119,7 @@ export function CalculatorForm({
             </Field>
           </div>
           {mobileSummary(1)}
+          {mobileResult(1)}
         </div>
       </section>
 
@@ -170,6 +180,7 @@ export function CalculatorForm({
             </Field>
           </div>
           {mobileSummary(2)}
+          {mobileResult(2)}
         </div>
       </section>
 
@@ -208,6 +219,7 @@ export function CalculatorForm({
             </Field>
           </div>
           {mobileSummary(3)}
+          {mobileResult(3)}
         </div>
       </section>
 
@@ -269,6 +281,7 @@ export function CalculatorForm({
             </Field>
           </div>
           {mobileSummary(4)}
+          {mobileResult(4)}
         </div>
       </section>
     </form>
