@@ -4,7 +4,6 @@ import {
   formatCurrency,
   formatOutOfTen,
   formatPercent,
-  periodLabels,
   periodNames,
 } from '../formatters'
 import type { StepNumber } from '../types'
@@ -26,7 +25,6 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function SummaryContent({ step, inputs, results }: StepSummaryProps) {
   const target = formatCount(inputs.targetClients)
-  const period = periodLabels[inputs.period]
 
   if (step === 1) {
     return (
@@ -46,10 +44,6 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
       <>
         <p className="result-kicker">Étape 02 · Valeur et marge</p>
         <h2 className="result-title">Votre marge disponible</h2>
-        <p className="result-reason">
-          Après déduction de la marge à conserver, le CAC maximum acceptable est de{' '}
-          {formatCurrency(results.maximumAcceptableCpa)} par client.
-        </p>
         <div className="result-metrics">
           <Metric
             label="Chiffre d’affaires moyen par client"
@@ -77,11 +71,6 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
       <>
         <p className="result-kicker">Étape 03 · Conversion commerciale</p>
         <h2 className="result-title">Les prospects à convertir</h2>
-        <p className="result-reason">
-          {results.requiredLeads === null
-            ? 'Indiquez combien de prospects sur 10 deviennent clients pour estimer le nombre de prospects requis.'
-            : `Pour obtenir ${target} nouveaux clients ${period}, il faudrait environ ${formatCount(results.requiredLeads)} prospects.`}
-        </p>
         <div className="result-metrics">
           <Metric
             label="Prospects qui deviennent clients"
@@ -93,17 +82,10 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
     )
   }
 
-  const trafficUnavailable = results.requiredClicks === null || results.estimatedBudget === null
-
   return (
     <>
       <p className="result-kicker">Étape 04 · Acquisition Google Ads</p>
       <h2 className="result-title">Trafic et budget estimés</h2>
-      <p className="result-reason">
-        {trafficUnavailable
-          ? 'Saisissez des taux de conversion supérieurs à 0 % pour estimer le trafic et le budget.'
-          : `Le budget estimé pour ${target} nouveaux clients ${period} est de ${formatCurrency(results.estimatedBudget)}.`}
-      </p>
       {results.estimatedCpa !== null && (
         <div className="result-comparison">
           <div>
