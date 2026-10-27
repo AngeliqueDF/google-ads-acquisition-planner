@@ -20,8 +20,17 @@ The project overview and product framing are published at [Google Ads Acquisitio
 
 The initial use case is lead generation, including quote inquiries. The interface supports a live consultation between a Google Ads specialist and a business owner:
 
-- **Business-owner explanations:** Plain-language text explains the current step without deciding what the specialist should conclude.
-- **Specialist context:** Statistics cards build an accumulated view of the assumptions entered so far. The total media budget appears only in step 4, when the traffic assumptions are available.
+### Step summary by stage
+
+| Step                  | Owner-facing text                                                                                  | Specialist stats cards                                                                                                                     |
+| --------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1. Goal               | Explain the client target, period, and average revenue.                                            | Target and period; average revenue per client.                                                                                             |
+| 2. Margins            | Explain how gross margin and the amount the business wants to keep affect what remains per client. | Retain the goal context; add average revenue, gross margin, retained margin, and maximum acceptable acquisition cost per client.           |
+| 3. Closing            | Explain how the closing-rate assumption relates to the target and prospects needed.                | Keep the goal and per-client cost limit; add closing rate and required prospects.                                                          |
+| 4. Traffic and budget | Explain the estimate from page conversion and CPC for the chosen target and period.                | Keep the key goal, margin, and lead figures; add page conversion, CPC, CPL, clicks, estimated media budget, and estimated cost per client. |
+
+The text stays focused on the current step, using earlier answers only when needed to explain it. It does not draw a conclusion or recommend a budget. The budget first appears in step 4. The cards retain relevant prior context, not every raw input. On mobile, they appear below the text.
+
 - **Assumption-led estimates:** The specialist can change the inputs to explore different scenarios. The planner does not make a recommendation or guarantee performance.
 - **Ergonomics and accessibility:** Form controls prioritize clear labels, accessible helpers, and sensible keyboard navigation before adding rich interactive controls.
 
@@ -131,8 +140,17 @@ La présentation générale et le cadrage du projet sont disponibles sur [Google
 
 Le premier cas d’usage concerne la génération de prospects, notamment les demandes de devis. L’interface accompagne un échange en direct entre un spécialiste Google Ads et un dirigeant d’entreprise :
 
-- **Explications pour le dirigeant :** Un texte en langage courant explique l’étape en cours sans décider de la conclusion à tirer.
-- **Contexte pour le spécialiste :** Les cartes de statistiques accumulent les hypothèses saisies jusque-là. Le budget média total apparaît uniquement à l’étape 4, lorsque les hypothèses de trafic sont disponibles.
+### Résumés par étape
+
+| Étape               | Texte destiné au dirigeant                                                                                               | Cartes de statistiques pour le spécialiste                                                                                                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1. Objectif         | Expliquer le nombre de clients visé, la période et le chiffre d’affaires moyen.                                          | Objectif et période ; chiffre d’affaires moyen par client.                                                                                                                                                   |
+| 2. Marges           | Expliquer comment la marge brute et le montant que l’entreprise souhaite conserver influent sur ce qui reste par client. | Conserver le contexte de l’objectif ; ajouter le chiffre d’affaires moyen, la marge brute, la marge conservée et le coût d’acquisition maximum acceptable par client.                                        |
+| 3. Closing          | Expliquer le lien entre le taux de closing, l’objectif et le nombre de prospects requis.                                 | Conserver l’objectif et la limite de coût par client ; ajouter le taux de closing et le nombre de prospects requis.                                                                                          |
+| 4. Trafic et budget | Expliquer l’estimation selon le taux de conversion de la page et le CPC, pour l’objectif et la période choisis.          | Conserver les éléments clés liés à l’objectif, à la marge et aux prospects ; ajouter le taux de conversion de la page, le CPC, le CPL, les clics, le budget média estimé et le coût média estimé par client. |
+
+Le texte reste centré sur l’étape en cours et ne reprend les réponses précédentes que si elles sont nécessaires pour l’expliquer. Il ne tire pas de conclusion et ne recommande pas de budget. Le budget apparaît pour la première fois à l’étape 4. Les cartes conservent le contexte antérieur pertinent, sans reprendre chaque valeur brute. Sur mobile, elles apparaissent sous le texte.
+
 - **Estimations fondées sur les hypothèses :** Le spécialiste peut modifier les valeurs pour explorer différents scénarios. L’outil ne formule pas de recommandation et ne garantit pas les performances.
 - **Ergonomie et accessibilité :** Les champs de formulaire mettent l’accent sur des labels clairs, des aides à la saisie accessibles et une navigation clavier fluide avant l’intégration de composants interactifs riches.
 
