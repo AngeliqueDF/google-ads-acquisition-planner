@@ -1,5 +1,11 @@
 import type { CalculatorInputs, ScenarioResults } from '../../lib/calculations'
-import { formatCount, formatCurrency, formatPercent, periodLabels } from './formatters'
+import {
+  formatCount,
+  formatCurrency,
+  formatEstimate,
+  formatPercent,
+  periodLabels,
+} from './formatters'
 import type { StepNumber } from './types'
 
 export type OwnerFacingSummarySegment = {
@@ -72,7 +78,7 @@ export function getOwnerFacingSummarySegments(
       plain(' des prospects deviennent clients. Pour obtenir '),
       emphasized(`${target} nouveaux clients ${frequency}`),
       plain(', il faudrait environ '),
-      emphasized(formatCount(results.requiredLeads)),
+      emphasized(formatEstimate(results.requiredLeads)),
       plain(' prospects.'),
     ]
   }
@@ -97,11 +103,11 @@ export function getOwnerFacingSummarySegments(
     plain('Environ '),
     emphasized(formatPercent(inputs.landingPageConversionPercent)),
     plain(' des visiteurs prennent contact. Pour obtenir '),
-    emphasized(formatCount(results.requiredLeads)),
+    emphasized(formatEstimate(results.requiredLeads)),
     plain(' prospects et atteindre votre objectif de '),
     emphasized(`${target} nouveaux clients ${frequency}`),
     plain(', il faudrait environ '),
-    emphasized(formatCount(results.requiredClicks)),
+    emphasized(formatEstimate(results.requiredClicks)),
     plain(' clics. Avec un coût moyen de '),
     emphasized(formatCurrency(inputs.costPerClick)),
     plain(' par clic, le budget média estimé est de '),

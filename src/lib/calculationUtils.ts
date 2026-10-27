@@ -1,3 +1,10 @@
+export function calculateProjectedRevenue(
+  targetClients: number,
+  averageRevenuePerClient: number,
+): number {
+  return targetClients * averageRevenuePerClient
+}
+
 export function calculateGrossMarginPerClient(
   averageRevenuePerClient: number,
   grossMarginPercent: number,
@@ -17,7 +24,7 @@ export function calculateRequiredLeads(
   targetClients: number,
   closingRatePercent: number,
 ): number | null {
-  return closingRatePercent > 0 ? Math.ceil(targetClients / (closingRatePercent / 100)) : null
+  return closingRatePercent > 0 ? targetClients / (closingRatePercent / 100) : null
 }
 
 export function calculateRequiredClicks(
@@ -25,7 +32,7 @@ export function calculateRequiredClicks(
   landingPageConversionPercent: number,
 ): number | null {
   return requiredLeads !== null && landingPageConversionPercent > 0
-    ? Math.ceil(requiredLeads / (landingPageConversionPercent / 100))
+    ? requiredLeads / (landingPageConversionPercent / 100)
     : null
 }
 

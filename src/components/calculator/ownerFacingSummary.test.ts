@@ -2,7 +2,7 @@ import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 import { calculateScenario, type CalculatorInputs } from '../../lib/calculations'
-import { formatCurrency, formatPercent } from './formatters'
+import { formatCurrency, formatEstimate, formatPercent } from './formatters'
 import { InlineStepSummary } from './components/InlineStepSummary'
 import { StepSummary } from './components/StepSummary'
 import { getOwnerFacingSummaryText } from './ownerFacingSummary'
@@ -62,7 +62,7 @@ describe('owner-facing step summary', () => {
 
     expect(text).toContain(`${formatPercent(20)} des prospects deviennent clients`)
     expect(text).toContain('10 nouveaux clients par mois')
-    expect(text).toContain('50 prospects')
+    expect(text).toContain(`${formatEstimate(50)} prospects`)
     expect(text).not.toContain('CAC')
   })
 
@@ -78,8 +78,8 @@ describe('owner-facing step summary', () => {
     const text = getOwnerFacingSummaryText(4, baseInputs, calculateScenario(baseInputs))
 
     expect(text).toContain('10 % des visiteurs prennent contact')
-    expect(text).toContain('50 prospects')
-    expect(text).toContain('500 clics')
+    expect(text).toContain(`${formatEstimate(50)} prospects`)
+    expect(text).toContain(`${formatEstimate(500)} clics`)
     expect(text).toContain(formatCurrency(2))
     expect(text).toContain(formatCurrency(1000))
     expect(text).toContain('10 nouveaux clients par mois')
@@ -130,7 +130,7 @@ describe('owner-facing step summary', () => {
   it.each([
     [1, formatCurrency(600)],
     [2, formatCurrency(60)],
-    [3, '50'],
+    [3, '50,00'],
     [4, formatCurrency(1000)],
   ] as const)('emphasizes key step %s information in the inline summary', (step, keyInfo) => {
     const results = calculateScenario(baseInputs)

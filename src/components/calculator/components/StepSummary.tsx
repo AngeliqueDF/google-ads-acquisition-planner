@@ -2,6 +2,7 @@ import type { CalculatorInputs, ScenarioResults } from '../../../lib/calculation
 import {
   formatCount,
   formatCurrency,
+  formatEstimate,
   formatOutOfTen,
   formatPercent,
   periodNames,
@@ -76,7 +77,7 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
             label="Prospects qui deviennent clients"
             value={formatOutOfTen(inputs.closingRatePercent)}
           />
-          <Metric label="Prospects requis" value={formatCount(results.requiredLeads)} />
+          <Metric label="Prospects requis" value={formatEstimate(results.requiredLeads)} />
         </div>
       </>
     )
@@ -106,7 +107,7 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
         />
         <Metric label="Coût estimé par clic" value={formatCurrency(inputs.costPerClick)} />
         <Metric label="CPL estimé" value={formatCurrency(results.costPerLead)} />
-        <Metric label="Clics requis" value={formatCount(results.requiredClicks)} />
+        <Metric label="Clics requis" value={formatEstimate(results.requiredClicks)} />
         <Metric label="Budget média estimé" value={formatCurrency(results.estimatedBudget)} />
       </div>
     </>

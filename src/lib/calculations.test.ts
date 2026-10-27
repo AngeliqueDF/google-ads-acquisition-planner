@@ -5,6 +5,7 @@ import {
   calculateEstimatedCpa,
   calculateGrossMarginPerClient,
   calculateMaximumAcceptableCpa,
+  calculateProjectedRevenue,
   calculateRequiredClicks,
   calculateRequiredLeads,
 } from './calculationUtils'
@@ -20,6 +21,17 @@ const baseInputs: CalculatorInputs = {
   landingPageConversionPercent: 10,
   costPerClick: 2,
 }
+
+describe('calculateProjectedRevenue', () => {
+  it('multiplies target clients by average revenue per client', () => {
+    expect(calculateProjectedRevenue(10, 600)).toBe(6000)
+  })
+
+  it('returns zero when either input is zero', () => {
+    expect(calculateProjectedRevenue(0, 600)).toBe(0)
+    expect(calculateProjectedRevenue(10, 0)).toBe(0)
+  })
+})
 
 describe('calculateGrossMarginPerClient', () => {
   it('multiplies average revenue by the gross margin percentage', () => {
@@ -42,8 +54,8 @@ describe('calculateMaximumAcceptableCpa', () => {
 })
 
 describe('calculateRequiredLeads', () => {
-  it('divides target clients by the closing rate and rounds up to a whole prospect', () => {
-    expect(calculateRequiredLeads(3, 40)).toBe(8)
+  it('returns a fractional prospect estimate without rounding up', () => {
+    expect(calculateRequiredLeads(3, 40)).toBe(7.5)
   })
 
   it('returns null when the closing rate is zero', () => {
@@ -52,8 +64,8 @@ describe('calculateRequiredLeads', () => {
 })
 
 describe('calculateRequiredClicks', () => {
-  it('divides required prospects by page conversion and rounds up to a whole click', () => {
-    expect(calculateRequiredClicks(8, 30)).toBe(27)
+  it('returns a fractional click estimate without rounding up', () => {
+    expect(calculateRequiredClicks(8, 30)).toBeCloseTo(26.6667)
   })
 
   it('returns null when required prospects are unavailable', () => {
@@ -70,6 +82,10 @@ describe('calculateCostPerLead', () => {
     expect(calculateCostPerLead(2, 10)).toBe(20)
   })
 
+  it('returns zero when click cost is zero', () => {
+    expect(calculateCostPerLead(0, 10)).toBe(0)
+  })
+
   it('returns null when page conversion is zero', () => {
     expect(calculateCostPerLead(2, 0)).toBeNull()
   })
@@ -82,6 +98,10 @@ describe('calculateEstimatedBudget', () => {
 
   it('returns null when required clicks are unavailable', () => {
     expect(calculateEstimatedBudget(null, 2)).toBeNull()
+  })
+
+  it('returns zero when click cost is zero', () => {
+    expect(calculateEstimatedBudget(500, 0)).toBe(0)
   })
 })
 
@@ -103,6 +123,7 @@ describe('calculateScenario', () => {
   it('assembles all calculation results for a complete monthly scenario', () => {
     expect(calculateScenario(baseInputs)).toEqual({
       grossMarginPerClient: 180,
+      projectedRevenue: 6000,
       maximumAcceptableCpa: 60,
       hasAcquisitionMargin: true,
       requiredLeads: 50,
@@ -127,5 +148,26 @@ describe('calculateScenario', () => {
 
     expect(results.maximumAcceptableCpa).toBe(0)
     expect(results.hasAcquisitionMargin).toBe(true)
+  })
+
+  it('uses fractional prospect and click estimates to calculate budget and acquisition cost', () => {
+    const inputs = {
+      ...baseInputs,
+      targetClients: 1,
+      closingRatePercent: 40,
+      landingPageConversionPercent: 30,
+    }
+    const results = calculateScenario(inputs)
+
+    expect(results.requiredLeads).toBe(2.5)
+    expect(results.requiredClicks).toBeCloseTo(8.3333)
+    expect(results.estimatedBudget).toBeCloseTo(16.6667)
+    expect(results.estimatedCpa).toBeCloseTo(16.6667)
+  })
+
+  it('labels projected revenue by cadence without changing its value', () => {
+    const results = calculateScenario({ ...baseInputs, period: 'quarter' })
+
+    expect(results.projectedRevenue).toBe(6000)
   })
 })
