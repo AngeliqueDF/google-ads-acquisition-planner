@@ -4,6 +4,7 @@ import {
   calculateEstimatedCpa,
   calculateGrossMarginPerClient,
   calculateMaximumAcceptableCpa,
+  calculateProjectedRevenue,
   calculateRequiredClicks,
   calculateRequiredLeads,
 } from './calculationUtils'
@@ -22,6 +23,7 @@ export interface CalculatorInputs {
 }
 
 export interface ScenarioResults {
+  projectedRevenue: number
   grossMarginPerClient: number
   maximumAcceptableCpa: number | null
   hasAcquisitionMargin: boolean
@@ -33,6 +35,10 @@ export interface ScenarioResults {
 }
 
 export function calculateScenario(inputs: CalculatorInputs): ScenarioResults {
+  const projectedRevenue = calculateProjectedRevenue(
+    inputs.targetClients,
+    inputs.averageRevenuePerClient,
+  )
   const grossMarginPerClient = calculateGrossMarginPerClient(
     inputs.averageRevenuePerClient,
     inputs.grossMarginPercent,
@@ -48,6 +54,7 @@ export function calculateScenario(inputs: CalculatorInputs): ScenarioResults {
   const estimatedCpa = calculateEstimatedCpa(estimatedBudget, inputs.targetClients)
 
   return {
+    projectedRevenue,
     grossMarginPerClient,
     maximumAcceptableCpa,
     hasAcquisitionMargin: maximumAcceptableCpa !== null,
