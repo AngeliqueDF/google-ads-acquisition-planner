@@ -4,24 +4,25 @@
 
 ## English
 
-A Google Ads acquisition scenario planner in development. This portfolio project demonstrates the design and delivery of an interactive web experience.
+A specialist-led Google Ads acquisition planner that makes lead-generation assumptions visible and starts a conversation with a business owner. The live planner is deployed independently on Netlify: [Open the planner](https://google-ads-acquisition-planner.netlify.app/).
 
-### Project status
+### Intended use
 
-The public page is currently a work in progress. The planner is not available yet.
+During a live conversation, the Google Ads specialist asks the questions and enters the business owner's answers. Plain-language text explains the current step to the business owner. Statistics cards accumulate context from previous and current steps for the specialist. The estimated media budget appears in step 4, after the traffic assumptions are entered. The planner calculates estimates from the assumptions; the specialist interprets them and decides what to recommend.
 
-The project is currently in the **UX/UI design and copywriting refinement phase**. The four-step acquisition journey, plain-language copywriting, and mental models connecting business viability to ad budget are being refined in Astro before implementing the interactive React calculator island.
+### Google affiliation
+
+This is an independent project, not a Google product and not affiliated with or endorsed by Google.
 
 The project overview and product framing are published at [Google Ads Acquisition Planner on angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
-The planned first version will help Google Ads specialists build an acquisition scenario with a prospect, starting from a business goal. Planned scenarios include quote inquiries, the steps after a click and after a conversion, and the assumptions connecting budget to expected outcomes. Company history may complement market benchmarks when those capabilities are developed.
-
 ### Product and UX design
 
-The interface is designed for live consultations between a Google Ads specialist and a business owner:
+The initial use case is lead generation, including quote inquiries. The interface supports a live consultation between a Google Ads specialist and a business owner:
 
-- **Inverted acquisition flow:** Rather than asking for advertising spend first, the planner starts from business reality (customer value, gross margin, minimum profitability to preserve) and works backward to the required traffic and allowable ad budget.
-- **Progressive copywriting:** Questions use plain business vocabulary (_nouveaux clients, marge, personnes intéressées_). Each section produces a contextual synthesis sentence explaining what the figures mean, while technical PPC metrics (`CPA`, `CPC`, `CVR`) are secondary summary badges for specialist review.
+- **Business-owner explanations:** Plain-language text explains the current step without deciding what the specialist should conclude.
+- **Specialist context:** Statistics cards build an accumulated view of the assumptions entered so far. The total media budget appears only in step 4, when the traffic assumptions are available.
+- **Assumption-led estimates:** The specialist can change the inputs to explore different scenarios. The planner does not make a recommendation or guarantee performance.
 - **Ergonomics and accessibility:** Form controls prioritize clear labels, accessible helpers, and sensible keyboard navigation before adding rich interactive controls.
 
 ### Engineering approach
@@ -110,28 +111,29 @@ npm run build
 npm run preview
 ```
 
-The build outputs the site to `dist/`, ready for a static host. A hosting provider and automatic deployment are not configured yet.
+The build outputs the site to `dist/`, ready for a static host. The planner is currently deployed independently on Netlify; see the live link above.
 
 ## Français
 
-Un planificateur de scénarios d’acquisition Google Ads en cours de développement. Ce projet de portfolio montre la conception et la réalisation d’une expérience web interactive.
+Un outil de planification d’acquisition Google Ads animé par un spécialiste, conçu pour rendre visibles les hypothèses de génération de prospects et amorcer une conversation avec un dirigeant. Le planificateur est déployé indépendamment sur Netlify : [Ouvrir le planificateur](https://google-ads-acquisition-planner.netlify.app/).
 
-### État du projet
+### Utilisation prévue
 
-La page publique est actuellement une page en cours de réalisation. Le planificateur n’est pas encore disponible.
+Lors d’un échange, le spécialiste Google Ads pose les questions et saisit les réponses du dirigeant. Un texte en langage courant explique l’étape en cours au dirigeant. Les cartes de statistiques accumulent le contexte des étapes précédentes et de l’étape actuelle pour le spécialiste. Le budget média estimé apparaît à l’étape 4, une fois les hypothèses de trafic renseignées. L’outil calcule des estimations à partir des hypothèses ; le spécialiste les interprète et décide des recommandations à formuler.
 
-Le projet est actuellement dans sa **phase de conception UX/UI et d’ajustement de la rédaction**. Le parcours d’acquisition en quatre étapes, les choix de vocabulaire accessible et les modèles économiques reliant viabilité commerciale et budget publicitaire sont testés et affinés dans Astro avant le développement de l’îlot interactif React.
+### Affiliation à Google
+
+Ce projet indépendant n’est pas un outil Google et n’est ni affilié à Google ni approuvé par Google.
 
 La présentation générale et le cadrage du projet sont disponibles sur [Google Ads Acquisition Planner sur angeliquedf.dev](https://angeliquedf.dev/projects/google-ads-acquisition-planner/).
 
-La première version prévue aidera les spécialistes Google Ads à construire un scénario d’acquisition avec un prospect, à partir d’un objectif commercial. Les scénarios prévus incluent les demandes de devis, les étapes après le clic et après la conversion, ainsi que les hypothèses reliant le budget aux résultats attendus. Les données historiques de l’entreprise pourront compléter les benchmarks lorsque ces fonctionnalités seront développées.
-
 ### Conception produit et UX
 
-L’interface est pensée pour des échanges en direct entre un spécialiste Google Ads et un dirigeant d’entreprise :
+Le premier cas d’usage concerne la génération de prospects, notamment les demandes de devis. L’interface accompagne un échange en direct entre un spécialiste Google Ads et un dirigeant d’entreprise :
 
-- **Entonnoir d’acquisition inversé :** Plutôt que de demander un budget publicitaire en amont, l’outil part de la réalité économique de l’entreprise (valeur client, marge brute, rentabilité minimale à préserver) et remonte jusqu’au trafic et au budget publicitaire acceptable.
-- **Rédaction progressive :** Les questions privilégient un vocabulaire métier simple (_nouveaux clients, marge, personnes intéressées_). Chaque étape produit une phrase de synthèse contextualisée, tandis que le jargon technique PPC (`CPA`, `CPC`, `CVR`) est réservé à des badges secondaires pour la lecture experte.
+- **Explications pour le dirigeant :** Un texte en langage courant explique l’étape en cours sans décider de la conclusion à tirer.
+- **Contexte pour le spécialiste :** Les cartes de statistiques accumulent les hypothèses saisies jusque-là. Le budget média total apparaît uniquement à l’étape 4, lorsque les hypothèses de trafic sont disponibles.
+- **Estimations fondées sur les hypothèses :** Le spécialiste peut modifier les valeurs pour explorer différents scénarios. L’outil ne formule pas de recommandation et ne garantit pas les performances.
 - **Ergonomie et accessibilité :** Les champs de formulaire mettent l’accent sur des labels clairs, des aides à la saisie accessibles et une navigation clavier fluide avant l’intégration de composants interactifs riches.
 
 ### Approche technique
@@ -220,4 +222,4 @@ npm run build
 npm run preview
 ```
 
-Le build génère le site dans `dist/`, prêt à être publié sur un hébergeur statique. Le fournisseur d’hébergement et le déploiement automatique ne sont pas encore configurés.
+Le build génère le site dans `dist/`, prêt à être publié sur un hébergeur statique. Le planificateur est actuellement déployé séparément sur Netlify ; le lien est indiqué plus haut.
