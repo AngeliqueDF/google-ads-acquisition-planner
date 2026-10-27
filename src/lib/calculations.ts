@@ -1,3 +1,13 @@
+import {
+  calculateCostPerLead,
+  calculateEstimatedBudget,
+  calculateEstimatedCpa,
+  calculateGrossMarginPerClient,
+  calculateMaximumAcceptableCpa,
+  calculateRequiredClicks,
+  calculateRequiredLeads,
+} from './calculationUtils'
+
 export type Period = 'month' | 'quarter' | 'year'
 
 export interface CalculatorInputs {
@@ -23,31 +33,24 @@ export interface ScenarioResults {
 }
 
 export function calculateScenario(inputs: CalculatorInputs): ScenarioResults {
-  const grossMarginPerClient = inputs.averageRevenuePerClient * (inputs.grossMarginPercent / 100)
-  const maximumAcceptableCpa = grossMarginPerClient - inputs.retainedMarginPerClient
-  const hasAcquisitionMargin = maximumAcceptableCpa >= 0
-  const requiredLeads =
-    inputs.closingRatePercent > 0
-      ? Math.ceil(inputs.targetClients / (inputs.closingRatePercent / 100))
-      : null
-  const requiredClicks =
-    requiredLeads !== null && inputs.landingPageConversionPercent > 0
-      ? Math.ceil(requiredLeads / (inputs.landingPageConversionPercent / 100))
-      : null
-  const costPerLead =
-    inputs.landingPageConversionPercent > 0
-      ? inputs.costPerClick / (inputs.landingPageConversionPercent / 100)
-      : null
-  const estimatedBudget = requiredClicks === null ? null : requiredClicks * inputs.costPerClick
-  const estimatedCpa =
-    estimatedBudget !== null && inputs.targetClients > 0
-      ? estimatedBudget / inputs.targetClients
-      : null
+  const grossMarginPerClient = calculateGrossMarginPerClient(
+    inputs.averageRevenuePerClient,
+    inputs.grossMarginPercent,
+  )
+  const maximumAcceptableCpa = calculateMaximumAcceptableCpa(
+    grossMarginPerClient,
+    inputs.retainedMarginPerClient,
+  )
+  const requiredLeads = calculateRequiredLeads(inputs.targetClients, inputs.closingRatePercent)
+  const requiredClicks = calculateRequiredClicks(requiredLeads, inputs.landingPageConversionPercent)
+  const costPerLead = calculateCostPerLead(inputs.costPerClick, inputs.landingPageConversionPercent)
+  const estimatedBudget = calculateEstimatedBudget(requiredClicks, inputs.costPerClick)
+  const estimatedCpa = calculateEstimatedCpa(estimatedBudget, inputs.targetClients)
 
   return {
     grossMarginPerClient,
-    maximumAcceptableCpa: hasAcquisitionMargin ? maximumAcceptableCpa : null,
-    hasAcquisitionMargin,
+    maximumAcceptableCpa,
+    hasAcquisitionMargin: maximumAcceptableCpa !== null,
     requiredLeads,
     requiredClicks,
     costPerLead,
