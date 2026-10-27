@@ -1,5 +1,5 @@
-import type { CalculatorInputs } from '../../lib/calculations'
-import type { FormValues } from './types'
+import type { CalculatorInputs, Period } from '../calculator/types'
+import type { FormValues, NumericField } from './types'
 
 export const initialFormValues: FormValues = {
   targetClients: '10',
@@ -28,4 +28,16 @@ export function getInputs(values: FormValues): CalculatorInputs {
     landingPageConversionPercent: toNumber(values.landingPageConversionPercent),
     costPerClick: toNumber(values.costPerClick),
   }
+}
+
+export function updateNumberInput(
+  values: FormValues,
+  field: NumericField,
+  value: string | number,
+): FormValues {
+  return { ...values, [field]: String(value) }
+}
+
+export function updatePeriodInput(values: FormValues, period: Period): FormValues {
+  return { ...values, period }
 }

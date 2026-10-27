@@ -1,4 +1,4 @@
-import type { CalculatorInputs, ScenarioResults } from '../../../lib/calculations'
+import type { CalculatorInputs, ScenarioResults, StepNumber } from '../calculator/types'
 import {
   formatCount,
   formatCurrency,
@@ -6,8 +6,7 @@ import {
   formatOutOfTen,
   formatPercent,
   periodNames,
-} from '../formatters'
-import type { StepNumber } from '../types'
+} from '../utils/formatters'
 
 type StepSummaryProps = {
   step: StepNumber
@@ -114,7 +113,7 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
   )
 }
 
-export function StepSummary({ step, inputs, results }: StepSummaryProps) {
+export function SidebarSpecialistCard({ step, inputs, results }: StepSummaryProps) {
   return (
     <div className="result-box" role="group" aria-label={`Résumé de l’étape ${step}`}>
       <SummaryContent step={step} inputs={inputs} results={results} />

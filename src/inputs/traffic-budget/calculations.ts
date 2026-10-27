@@ -1,32 +1,3 @@
-export function calculateProjectedRevenue(
-  targetClients: number,
-  averageRevenuePerClient: number,
-): number {
-  return targetClients * averageRevenuePerClient
-}
-
-export function calculateGrossMarginPerClient(
-  averageRevenuePerClient: number,
-  grossMarginPercent: number,
-): number {
-  return averageRevenuePerClient * (grossMarginPercent / 100)
-}
-
-export function calculateMaximumAcceptableCpa(
-  grossMarginPerClient: number,
-  retainedMarginPerClient: number,
-): number | null {
-  const maximumAcceptableCpa = grossMarginPerClient - retainedMarginPerClient
-  return maximumAcceptableCpa >= 0 ? maximumAcceptableCpa : null
-}
-
-export function calculateRequiredLeads(
-  targetClients: number,
-  closingRatePercent: number,
-): number | null {
-  return closingRatePercent > 0 ? targetClients / (closingRatePercent / 100) : null
-}
-
 export function calculateRequiredClicks(
   requiredLeads: number | null,
   landingPageConversionPercent: number,

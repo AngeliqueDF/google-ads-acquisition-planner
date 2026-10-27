@@ -1,38 +1,16 @@
+import { calculateRequiredLeads } from '../inputs/closing/calculations'
+import {
+  calculateGrossMarginPerClient,
+  calculateMaximumAcceptableCpa,
+} from '../inputs/margin/calculations'
+import { calculateProjectedRevenue } from '../inputs/goal/calculations'
 import {
   calculateCostPerLead,
   calculateEstimatedBudget,
   calculateEstimatedCpa,
-  calculateGrossMarginPerClient,
-  calculateMaximumAcceptableCpa,
-  calculateProjectedRevenue,
   calculateRequiredClicks,
-  calculateRequiredLeads,
-} from './calculationUtils'
-
-export type Period = 'month' | 'quarter' | 'year'
-
-export interface CalculatorInputs {
-  targetClients: number
-  period: Period
-  averageRevenuePerClient: number
-  grossMarginPercent: number
-  retainedMarginPerClient: number
-  closingRatePercent: number
-  landingPageConversionPercent: number
-  costPerClick: number
-}
-
-export interface ScenarioResults {
-  projectedRevenue: number
-  grossMarginPerClient: number
-  maximumAcceptableCpa: number | null
-  hasAcquisitionMargin: boolean
-  requiredLeads: number | null
-  requiredClicks: number | null
-  costPerLead: number | null
-  estimatedBudget: number | null
-  estimatedCpa: number | null
-}
+} from '../inputs/traffic-budget/calculations'
+import type { CalculatorInputs, ScenarioResults } from './types'
 
 export function calculateScenario(inputs: CalculatorInputs): ScenarioResults {
   const projectedRevenue = calculateProjectedRevenue(

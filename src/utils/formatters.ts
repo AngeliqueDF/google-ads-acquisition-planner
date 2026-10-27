@@ -1,4 +1,4 @@
-import type { Period } from '../../lib/calculations'
+import type { Period } from '../calculator/types'
 
 export const periodLabels: Record<Period, string> = {
   month: 'par mois',
