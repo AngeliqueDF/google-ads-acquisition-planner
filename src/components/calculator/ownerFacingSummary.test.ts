@@ -40,7 +40,10 @@ describe('owner-facing step summary', () => {
     expect(text).toContain(formatCurrency(180))
     expect(text).toContain(formatCurrency(120))
     expect(text).toContain(formatCurrency(60))
-    expect(text).toContain('peut être consacrée aux annonces')
+    expect(text).toContain(
+      'représente le montant maximal disponible pour le budget média par nouveau client, selon ces hypothèses',
+    )
+    expect(text).not.toContain('peut être consacrée aux annonces')
     expect(text).not.toContain('CAC')
   })
 

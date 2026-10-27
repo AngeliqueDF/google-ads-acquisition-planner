@@ -51,7 +51,9 @@ export function getOwnerFacingSummarySegments(
       emphasized(retainedMargin),
       plain(' par client ; la différence, '),
       emphasized(formatCurrency(results.maximumAcceptableCpa)),
-      plain(' par client, peut être consacrée aux annonces.'),
+      plain(
+        ' par client, représente le montant maximal disponible pour le budget média par nouveau client, selon ces hypothèses.',
+      ),
     ]
   }
 
