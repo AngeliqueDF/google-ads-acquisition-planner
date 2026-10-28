@@ -304,23 +304,24 @@ h1 {
   padding-bottom: var(--size-4);
 }
 .result-comparison > div {
-  display: grid;
-  gap: var(--size-1);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--size-2);
+}
+.result-comparison > div span {
+  max-width: 48%;
+  text-align: right;
+}
+.result-comparison > div strong {
+  white-space: nowrap;
 }
 .result-comparison span {
   font-size: var(--font-size-1);
 }
 .result-comparison strong {
-  font-size: var(--font-size-8);
-  line-height: 1;
-  letter-spacing: -0.055em;
-}
-.result-comparison > div:last-child strong {
-  font-size: var(--font-size-5);
-}
-.comparison-word {
-  font-size: var(--font-size-1);
-  font-weight: 600;
+  font-size: var(--font-size-4);
+  line-height: 1.1;
 }
 .result-metrics {
   display: grid;
@@ -331,6 +332,7 @@ h1 {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  gap: var(--size-2);
   margin: 0;
 }
 .result-metrics strong {
@@ -339,6 +341,15 @@ h1 {
 .result-metrics span {
   font-size: var(--font-size-1);
   text-align: right;
+}
+.result-metrics .result-highlight strong {
+  font-size: var(--font-size-5);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.result-metrics .result-highlight span {
+  max-width: 48%;
+  font-weight: 600;
 }
 .result-box .summary-note {
   margin: 0 0 var(--size-4);

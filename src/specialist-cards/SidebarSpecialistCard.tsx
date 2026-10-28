@@ -1,12 +1,5 @@
 import type { CalculatorInputs, ScenarioResults, StepNumber } from '../calculator/types'
-import {
-  formatCount,
-  formatCurrency,
-  formatEstimate,
-  formatOutOfTen,
-  formatPercent,
-  periodNames,
-} from '../utils/formatters'
+import { formatCount, formatCurrency, formatEstimate, periodLabels } from '../utils/formatters'
 
 type StepSummaryProps = {
   step: StepNumber
@@ -14,9 +7,9 @@ type StepSummaryProps = {
   results: ScenarioResults
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
+function Metric({ label, value, className }: { label: string; value: string; className?: string }) {
   return (
-    <p>
+    <p className={className}>
       <strong>{value}</strong>
       <span>{label}</span>
     </p>
@@ -25,6 +18,8 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function SummaryContent({ step, inputs, results }: StepSummaryProps) {
   const target = formatCount(inputs.targetClients)
+  const targetClientLabel = inputs.targetClients === 1 ? 'client' : 'clients'
+  const targetQualifier = inputs.targetClients === 1 ? 'visé' : 'visés'
 
   if (step === 1) {
     return (
@@ -32,8 +27,19 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
         <p className="result-kicker">Étape 01 · Objectif de vente</p>
         <h2 className="result-title">Votre objectif</h2>
         <div className="result-metrics">
-          <Metric label="Clients visés" value={target} />
-          <Metric label="Période" value={periodNames[inputs.period]} />
+          <Metric
+            className="result-highlight"
+            label={`Chiffre d’affaires total projeté ${periodLabels[inputs.period]}`}
+            value={formatCurrency(results.projectedRevenue)}
+          />
+          <Metric
+            label={`${targetClientLabel} ${periodLabels[inputs.period]} ${targetQualifier}`}
+            value={target}
+          />
+          <Metric
+            label="Chiffre d’affaires moyen par client"
+            value={formatCurrency(inputs.averageRevenuePerClient)}
+          />
         </div>
       </>
     )
@@ -46,20 +52,17 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
         <h2 className="result-title">Votre marge disponible</h2>
         <div className="result-metrics">
           <Metric
-            label="Chiffre d’affaires moyen par client"
-            value={formatCurrency(inputs.averageRevenuePerClient)}
+            className="result-highlight"
+            label="Montant maximum à consacrer à chaque client"
+            value={formatCurrency(results.maximumAcceptableCpa)}
           />
           <Metric
-            label="Marge brute par client"
-            value={formatCurrency(results.grossMarginPerClient)}
+            label={`${targetClientLabel} ${periodLabels[inputs.period]} ${targetQualifier}`}
+            value={target}
           />
           <Metric
             label="Marge à conserver par client"
             value={formatCurrency(inputs.retainedMarginPerClient)}
-          />
-          <Metric
-            label="CAC maximum acceptable"
-            value={formatCurrency(results.maximumAcceptableCpa)}
           />
         </div>
       </>
@@ -73,10 +76,18 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
         <h2 className="result-title">Les prospects à convertir</h2>
         <div className="result-metrics">
           <Metric
-            label="Prospects qui deviennent clients"
-            value={formatOutOfTen(inputs.closingRatePercent)}
+            className="result-highlight"
+            label="Prospects requis"
+            value={formatEstimate(results.requiredLeads)}
           />
-          <Metric label="Prospects requis" value={formatEstimate(results.requiredLeads)} />
+          <Metric
+            label={`${targetClientLabel} ${periodLabels[inputs.period]} ${targetQualifier}`}
+            value={target}
+          />
+          <Metric
+            label="Montant maximum à consacrer à chaque client"
+            value={formatCurrency(results.maximumAcceptableCpa)}
+          />
         </div>
       </>
     )
@@ -86,29 +97,25 @@ function SummaryContent({ step, inputs, results }: StepSummaryProps) {
     <>
       <p className="result-kicker">Étape 04 · Acquisition Google Ads</p>
       <h2 className="result-title">Trafic et budget estimés</h2>
+      <div className="result-metrics">
+        <Metric
+          className="result-highlight"
+          label={`Budget média estimé pour ${target} ${targetClientLabel} ${periodLabels[inputs.period]}`}
+          value={formatCurrency(results.estimatedBudget)}
+        />
+      </div>
       {results.estimatedCpa !== null && (
         <div className="result-comparison">
           <div>
-            <span>CAC estimé</span>
             <strong>{formatCurrency(results.estimatedCpa)}</strong>
+            <span>Coût estimé pour obtenir un client</span>
           </div>
-          <span className="comparison-word">contre</span>
           <div>
-            <span>CAC maximum acceptable</span>
             <strong>{formatCurrency(results.maximumAcceptableCpa)}</strong>
+            <span>Montant maximum à consacrer à chaque client</span>
           </div>
         </div>
       )}
-      <div className="result-metrics">
-        <Metric
-          label="Taux de conversion de la page"
-          value={formatPercent(inputs.landingPageConversionPercent)}
-        />
-        <Metric label="Coût estimé par clic" value={formatCurrency(inputs.costPerClick)} />
-        <Metric label="CPL estimé" value={formatCurrency(results.costPerLead)} />
-        <Metric label="Clics requis" value={formatEstimate(results.requiredClicks)} />
-        <Metric label="Budget média estimé" value={formatCurrency(results.estimatedBudget)} />
-      </div>
     </>
   )
 }
