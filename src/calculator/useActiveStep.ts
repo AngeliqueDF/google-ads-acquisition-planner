@@ -8,6 +8,7 @@ export function useActiveStep(): StepNumber {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>('.calculator .step[data-step]'),
     )
+    const mobileViewport = window.matchMedia('(max-width: 840px)')
     let frame = 0
 
     const updateActiveStep = () => {
@@ -38,11 +39,23 @@ export function useActiveStep(): StepNumber {
       frame = requestAnimationFrame(updateActiveStep)
     }
 
-    updateActiveStep()
-    window.addEventListener('scroll', scheduleUpdate, { passive: true })
-    window.addEventListener('resize', scheduleUpdate)
+    const updateListeners = () => {
+      cancelAnimationFrame(frame)
+      if (mobileViewport.matches) {
+        window.removeEventListener('scroll', scheduleUpdate)
+        window.removeEventListener('resize', scheduleUpdate)
+        return
+      }
+      updateActiveStep()
+      window.addEventListener('scroll', scheduleUpdate, { passive: true })
+      window.addEventListener('resize', scheduleUpdate)
+    }
+
+    updateListeners()
+    mobileViewport.addEventListener('change', updateListeners)
     return () => {
       cancelAnimationFrame(frame)
+      mobileViewport.removeEventListener('change', updateListeners)
       window.removeEventListener('scroll', scheduleUpdate)
       window.removeEventListener('resize', scheduleUpdate)
     }

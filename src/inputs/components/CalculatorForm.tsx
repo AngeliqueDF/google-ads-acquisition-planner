@@ -10,7 +10,6 @@ type CalculatorFormProps = {
   formValues: FormValues
   inputs: CalculatorInputs
   results: ScenarioResults
-  activeStep: StepNumber
   onNumberChange: (field: NumericField, value: string | number) => void
   onPeriodChange: (period: Period) => void
 }
@@ -19,7 +18,6 @@ export function CalculatorForm({
   formValues,
   inputs,
   results,
-  activeStep,
   onNumberChange,
   onPeriodChange,
 }: CalculatorFormProps) {
@@ -29,12 +27,11 @@ export function CalculatorForm({
   const inlineMetrics = (step: StepNumber) => (
     <InlineSpecialistMetrics step={step} inputs={inputs} results={results} />
   )
-  const mobileResult = (step: StepNumber) =>
-    activeStep === step ? (
-      <div className="mobile-result-panel">
-        <SidebarSpecialistCard step={step} inputs={inputs} results={results} />
-      </div>
-    ) : null
+  const mobileResult = (step: StepNumber) => (
+    <div className="mobile-result-panel">
+      <SidebarSpecialistCard step={step} inputs={inputs} results={results} />
+    </div>
+  )
 
   return (
     <form
