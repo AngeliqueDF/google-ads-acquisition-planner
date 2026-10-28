@@ -1,9 +1,10 @@
 import { NumberInput, Select } from '@mantine/core'
-import type { CalculatorInputs, Period, ScenarioResults } from '../../../lib/calculations'
-import { StepSummary } from './StepSummary'
-import { InlineStepSummary } from './InlineStepSummary'
+import type { CalculatorInputs, Period, ScenarioResults, StepNumber } from '../../calculator/types'
+import { OwnerFacingSummary } from '../../owner-summary/OwnerFacingSummary'
+import { InlineSpecialistMetrics } from '../../specialist-cards/InlineSpecialistMetrics'
+import { SidebarSpecialistCard } from '../../specialist-cards/SidebarSpecialistCard'
 import { Field } from './Field'
-import type { FormValues, NumericField, StepNumber } from '../types'
+import type { FormValues, NumericField } from '../types'
 
 type CalculatorFormProps = {
   formValues: FormValues
@@ -22,13 +23,16 @@ export function CalculatorForm({
   onNumberChange,
   onPeriodChange,
 }: CalculatorFormProps) {
-  const mobileSummary = (step: StepNumber) => (
-    <InlineStepSummary step={step} inputs={inputs} results={results} />
+  const ownerSummary = (step: StepNumber) => (
+    <OwnerFacingSummary step={step} inputs={inputs} results={results} />
+  )
+  const inlineMetrics = (step: StepNumber) => (
+    <InlineSpecialistMetrics step={step} inputs={inputs} results={results} />
   )
   const mobileResult = (step: StepNumber) =>
     activeStep === step ? (
       <div className="mobile-result-panel">
-        <StepSummary step={step} inputs={inputs} results={results} />
+        <SidebarSpecialistCard step={step} inputs={inputs} results={results} />
       </div>
     ) : null
 
@@ -118,7 +122,8 @@ export function CalculatorForm({
               />
             </Field>
           </div>
-          {mobileSummary(1)}
+          {ownerSummary(1)}
+          {inlineMetrics(1)}
           {mobileResult(1)}
         </div>
       </section>
@@ -179,7 +184,8 @@ export function CalculatorForm({
               />
             </Field>
           </div>
-          {mobileSummary(2)}
+          {ownerSummary(2)}
+          {inlineMetrics(2)}
           {mobileResult(2)}
         </div>
       </section>
@@ -218,7 +224,8 @@ export function CalculatorForm({
               />
             </Field>
           </div>
-          {mobileSummary(3)}
+          {ownerSummary(3)}
+          {inlineMetrics(3)}
           {mobileResult(3)}
         </div>
       </section>
@@ -280,7 +287,8 @@ export function CalculatorForm({
               />
             </Field>
           </div>
-          {mobileSummary(4)}
+          {ownerSummary(4)}
+          {inlineMetrics(4)}
           {mobileResult(4)}
         </div>
       </section>

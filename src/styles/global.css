@@ -500,6 +500,7 @@ footer p {
   }
   .step-content > .fields,
   .step-content > .section-summary,
+  .step-content > .summary-metrics,
   .step-content > .mobile-result-panel {
     grid-column: 1 / -1;
   }
@@ -519,7 +520,7 @@ footer p {
   .mobile-result-panel {
     display: block;
   }
-  .section-summary .summary-metrics {
+  .step-content > .summary-metrics {
     display: none;
   }
   .section-summary {

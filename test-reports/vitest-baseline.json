@@ -1,0 +1,683 @@
+{
+  "numTotalTestSuites": 18,
+  "numPassedTestSuites": 18,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 55,
+  "numPassedTests": 55,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1793122650999,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["calculateProjectedRevenue"],
+          "fullName": "calculateProjectedRevenue multiplies target clients by average revenue per client",
+          "status": "passed",
+          "title": "multiplies target clients by average revenue per client",
+          "duration": 2.1244780000000105,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateProjectedRevenue"],
+          "fullName": "calculateProjectedRevenue returns zero when either input is zero",
+          "status": "passed",
+          "title": "returns zero when either input is zero",
+          "duration": 0.28020899999998505,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateGrossMarginPerClient"],
+          "fullName": "calculateGrossMarginPerClient multiplies average revenue by the gross margin percentage",
+          "status": "passed",
+          "title": "multiplies average revenue by the gross margin percentage",
+          "duration": 0.24584700000002613,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateMaximumAcceptableCpa"],
+          "fullName": "calculateMaximumAcceptableCpa subtracts the amount to retain from gross margin",
+          "status": "passed",
+          "title": "subtracts the amount to retain from gross margin",
+          "duration": 0.2911049999999875,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateMaximumAcceptableCpa"],
+          "fullName": "calculateMaximumAcceptableCpa returns zero when all gross margin is retained",
+          "status": "passed",
+          "title": "returns zero when all gross margin is retained",
+          "duration": 0.25262200000000234,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateMaximumAcceptableCpa"],
+          "fullName": "calculateMaximumAcceptableCpa returns null when retained margin exceeds gross margin",
+          "status": "passed",
+          "title": "returns null when retained margin exceeds gross margin",
+          "duration": 0.21183300000001282,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateRequiredLeads"],
+          "fullName": "calculateRequiredLeads returns a fractional prospect estimate without rounding up",
+          "status": "passed",
+          "title": "returns a fractional prospect estimate without rounding up",
+          "duration": 0.2770659999999907,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateRequiredLeads"],
+          "fullName": "calculateRequiredLeads returns null when the closing rate is zero",
+          "status": "passed",
+          "title": "returns null when the closing rate is zero",
+          "duration": 0.22119299999999953,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateRequiredClicks"],
+          "fullName": "calculateRequiredClicks returns a fractional click estimate without rounding up",
+          "status": "passed",
+          "title": "returns a fractional click estimate without rounding up",
+          "duration": 0.44140600000000063,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateRequiredClicks"],
+          "fullName": "calculateRequiredClicks returns null when required prospects are unavailable",
+          "status": "passed",
+          "title": "returns null when required prospects are unavailable",
+          "duration": 0.29620299999999133,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateRequiredClicks"],
+          "fullName": "calculateRequiredClicks returns null when page conversion is zero",
+          "status": "passed",
+          "title": "returns null when page conversion is zero",
+          "duration": 0.15770499999999288,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateCostPerLead"],
+          "fullName": "calculateCostPerLead divides click cost by the page conversion rate",
+          "status": "passed",
+          "title": "divides click cost by the page conversion rate",
+          "duration": 0.17600400000000604,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateCostPerLead"],
+          "fullName": "calculateCostPerLead returns zero when click cost is zero",
+          "status": "passed",
+          "title": "returns zero when click cost is zero",
+          "duration": 0.12830099999999334,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateCostPerLead"],
+          "fullName": "calculateCostPerLead returns null when page conversion is zero",
+          "status": "passed",
+          "title": "returns null when page conversion is zero",
+          "duration": 0.11614800000000969,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateEstimatedBudget"],
+          "fullName": "calculateEstimatedBudget multiplies required clicks by click cost",
+          "status": "passed",
+          "title": "multiplies required clicks by click cost",
+          "duration": 0.14862500000000978,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateEstimatedBudget"],
+          "fullName": "calculateEstimatedBudget returns null when required clicks are unavailable",
+          "status": "passed",
+          "title": "returns null when required clicks are unavailable",
+          "duration": 0.11230699999998706,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateEstimatedBudget"],
+          "fullName": "calculateEstimatedBudget returns zero when click cost is zero",
+          "status": "passed",
+          "title": "returns zero when click cost is zero",
+          "duration": 0.1099320000000148,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateEstimatedCpa"],
+          "fullName": "calculateEstimatedCpa divides estimated budget by the target client count",
+          "status": "passed",
+          "title": "divides estimated budget by the target client count",
+          "duration": 0.14303799999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateEstimatedCpa"],
+          "fullName": "calculateEstimatedCpa returns null when the target client count is zero",
+          "status": "passed",
+          "title": "returns null when the target client count is zero",
+          "duration": 0.09903799999997887,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateEstimatedCpa"],
+          "fullName": "calculateEstimatedCpa returns null when the estimated budget is unavailable",
+          "status": "passed",
+          "title": "returns null when the estimated budget is unavailable",
+          "duration": 0.10287800000000402,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateScenario"],
+          "fullName": "calculateScenario assembles all calculation results for a complete monthly scenario",
+          "status": "passed",
+          "title": "assembles all calculation results for a complete monthly scenario",
+          "duration": 0.8834410000000048,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateScenario"],
+          "fullName": "calculateScenario reports no acquisition margin when the retained amount exceeds gross margin",
+          "status": "passed",
+          "title": "reports no acquisition margin when the retained amount exceeds gross margin",
+          "duration": 0.19157899999999017,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateScenario"],
+          "fullName": "calculateScenario reports acquisition margin when the maximum acceptable cost is zero",
+          "status": "passed",
+          "title": "reports acquisition margin when the maximum acceptable cost is zero",
+          "duration": 0.1917880000000025,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateScenario"],
+          "fullName": "calculateScenario uses fractional prospect and click estimates to calculate budget and acquisition cost",
+          "status": "passed",
+          "title": "uses fractional prospect and click estimates to calculate budget and acquisition cost",
+          "duration": 0.24012000000001876,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculateScenario"],
+          "fullName": "calculateScenario labels projected revenue by cadence without changing its value",
+          "status": "passed",
+          "title": "labels projected revenue by cadence without changing its value",
+          "duration": 0.17251099999998587,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793122651182,
+      "endTime": 1793122651190.2402,
+      "status": "passed",
+      "message": "",
+      "name": "src/lib/calculations.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["test environment"],
+          "fullName": "test environment runs unit tests in a Node environment",
+          "status": "passed",
+          "title": "runs unit tests in a Node environment",
+          "duration": 1.974316000000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793122651169,
+      "endTime": 1793122651170.9744,
+      "status": "passed",
+      "message": "",
+      "name": "src/lib/smoke.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["calculator formatters"],
+          "fullName": "calculator formatters keeps target client counts as whole numbers",
+          "status": "passed",
+          "title": "keeps target client counts as whole numbers",
+          "duration": 1.9175329999999917,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculator formatters"],
+          "fullName": "calculator formatters displays fractional estimates with two decimal places",
+          "status": "passed",
+          "title": "displays fractional estimates with two decimal places",
+          "duration": 0.3823199999999929,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["calculator formatters"],
+          "fullName": "calculator formatters displays euro amounts with two decimal places",
+          "status": "passed",
+          "title": "displays euro amounts with two decimal places",
+          "duration": 0.30633100000000013,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793122651194,
+      "endTime": 1793122651196.3823,
+      "status": "passed",
+      "message": "",
+      "name": "src/components/calculator/formatters.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains the goal with the selected frequency: month",
+          "status": "passed",
+          "title": "explains the goal with the selected frequency: month",
+          "duration": 2.367321000000004,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains the goal with the selected frequency: quarter",
+          "status": "passed",
+          "title": "explains the goal with the selected frequency: quarter",
+          "duration": 0.2869839999999897,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains the goal with the selected frequency: year",
+          "status": "passed",
+          "title": "explains the goal with the selected frequency: year",
+          "duration": 0.274343000000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains how gross margin and retained margin relate without using specialist acronyms",
+          "status": "passed",
+          "title": "explains how gross margin and retained margin relate without using specialist acronyms",
+          "duration": 0.302977999999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary states the gross and retained margins without a verdict when there is no positive amount for ads",
+          "status": "passed",
+          "title": "states the gross and retained margins without a verdict when there is no positive amount for ads",
+          "duration": 0.2457070000000101,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains prospects required from the closing assumption and sales goal",
+          "status": "passed",
+          "title": "explains prospects required from the closing assumption and sales goal",
+          "duration": 0.4062749999999937,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary asks for the closing assumption when required prospects cannot be estimated",
+          "status": "passed",
+          "title": "asks for the closing assumption when required prospects cannot be estimated",
+          "duration": 0.1993310000000008,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains the traffic estimate and total media budget for the selected target frequency",
+          "status": "passed",
+          "title": "explains the traffic estimate and total media budget for the selected target frequency",
+          "duration": 0.3671640000000025,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains that the closing assumption is needed before estimating traffic and budget",
+          "status": "passed",
+          "title": "explains that the closing assumption is needed before estimating traffic and budget",
+          "duration": 3.66877199999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary explains that visitor contacts are needed before estimating clicks and budget",
+          "status": "passed",
+          "title": "explains that visitor contacts are needed before estimating clicks and budget",
+          "duration": 0.5962480000000028,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary renders step 1 owner-facing text inline but not in the sidebar",
+          "status": "passed",
+          "title": "renders step 1 owner-facing text inline but not in the sidebar",
+          "duration": 9.514123999999981,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary renders step 2 owner-facing text inline but not in the sidebar",
+          "status": "passed",
+          "title": "renders step 2 owner-facing text inline but not in the sidebar",
+          "duration": 1.715408999999994,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary renders step 3 owner-facing text inline but not in the sidebar",
+          "status": "passed",
+          "title": "renders step 3 owner-facing text inline but not in the sidebar",
+          "duration": 1.2788220000000194,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary renders step 4 owner-facing text inline but not in the sidebar",
+          "status": "passed",
+          "title": "renders step 4 owner-facing text inline but not in the sidebar",
+          "duration": 1.6267079999999794,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes key step 1 information in the inline summary",
+          "status": "passed",
+          "title": "emphasizes key step 1 information in the inline summary",
+          "duration": 0.6507249999999942,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes key step 2 information in the inline summary",
+          "status": "passed",
+          "title": "emphasizes key step 2 information in the inline summary",
+          "duration": 0.7537430000000143,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes key step 3 information in the inline summary",
+          "status": "passed",
+          "title": "emphasizes key step 3 information in the inline summary",
+          "duration": 0.49581399999999576,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes key step 4 information in the inline summary",
+          "status": "passed",
+          "title": "emphasizes key step 4 information in the inline summary",
+          "duration": 0.8080109999999934,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes the key information for a step 2 fallback",
+          "status": "passed",
+          "title": "emphasizes the key information for a step 2 fallback",
+          "duration": 0.7046440000000018,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes the key information for a step 3 fallback",
+          "status": "passed",
+          "title": "emphasizes the key information for a step 3 fallback",
+          "duration": 0.5083150000000103,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes the key information for a step 4 fallback",
+          "status": "passed",
+          "title": "emphasizes the key information for a step 4 fallback",
+          "duration": 0.7735790000000122,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["owner-facing step summary"],
+          "fullName": "owner-facing step summary emphasizes the key information for a step 4 fallback",
+          "status": "passed",
+          "title": "emphasizes the key information for a step 4 fallback",
+          "duration": 2.312004999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793122651231,
+      "endTime": 1793122651261.312,
+      "status": "passed",
+      "message": "",
+      "name": "src/components/calculator/ownerFacingSummary.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["mobile specialist summary placement"],
+          "fullName": "mobile specialist summary placement renders the sidebar card only inside active step 1",
+          "status": "passed",
+          "title": "renders the sidebar card only inside active step 1",
+          "duration": 39.65889699999991,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["mobile specialist summary placement"],
+          "fullName": "mobile specialist summary placement renders the sidebar card only inside active step 2",
+          "status": "passed",
+          "title": "renders the sidebar card only inside active step 2",
+          "duration": 16.453282999999942,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["mobile specialist summary placement"],
+          "fullName": "mobile specialist summary placement renders the sidebar card only inside active step 3",
+          "status": "passed",
+          "title": "renders the sidebar card only inside active step 3",
+          "duration": 14.778103999999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        },
+        {
+          "ancestorTitles": ["mobile specialist summary placement"],
+          "fullName": "mobile specialist summary placement renders the sidebar card only inside active step 4",
+          "status": "passed",
+          "title": "renders the sidebar card only inside active step 4",
+          "duration": 16.392798999999968,
+          "failureMessages": [],
+          "meta": {},
+          "tags": [],
+          "benchmarks": []
+        }
+      ],
+      "startTime": 1793122651615,
+      "endTime": 1793122651702.3928,
+      "status": "passed",
+      "message": "",
+      "name": "src/components/calculator/components/CalculatorForm.test.ts"
+    }
+  ],
+  "baselineCommit": "6347b01e1de4a3beb7a6c2f574a8ac6254184e68",
+  "vitestVersion": "5.0.5"
+}

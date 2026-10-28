@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { StepNumber } from '../types'
+import type { StepNumber } from './types'
 
 export function useActiveStep(): StepNumber {
   const [activeStep, setActiveStep] = useState<StepNumber>(1)
