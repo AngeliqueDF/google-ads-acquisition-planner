@@ -6,10 +6,10 @@ const baseInputs: CalculatorInputs = {
   targetClients: 10,
   period: 'month',
   averageRevenuePerClient: 600,
-  grossMarginPercent: 30,
+  grossMarginPercent: 50,
   retainedMarginPerClient: 120,
   closingRatePercent: 20,
-  landingPageConversionPercent: 10,
+  landingPageConversionPercent: 4,
   costPerClick: 2,
 }
 
@@ -17,19 +17,19 @@ describe('calculateScenario', () => {
   it('combines estimates for a complete scenario', () => {
     expect(calculateScenario(baseInputs)).toEqual({
       projectedRevenue: 6000,
-      grossMarginPerClient: 180,
-      maximumAcceptableCpa: 60,
+      grossMarginPerClient: 300,
+      maximumAcceptableCpa: 180,
       hasAcquisitionMargin: true,
       requiredLeads: 50,
-      requiredClicks: 500,
-      costPerLead: 20,
-      estimatedBudget: 1000,
-      estimatedCpa: 100,
+      requiredClicks: 1250,
+      costPerLead: 50,
+      estimatedBudget: 2500,
+      estimatedCpa: 250,
     })
   })
 
   it('reports no acquisition margin when the amount to retain exceeds gross margin', () => {
-    const inputs = { ...baseInputs, retainedMarginPerClient: 181 }
+    const inputs = { ...baseInputs, retainedMarginPerClient: 301 }
     const results = calculateScenario(inputs)
 
     expect(results.maximumAcceptableCpa).toBeNull()
@@ -37,7 +37,7 @@ describe('calculateScenario', () => {
   })
 
   it('reports acquisition margin when no margin remains for acquisition', () => {
-    const inputs = { ...baseInputs, retainedMarginPerClient: 180 }
+    const inputs = { ...baseInputs, retainedMarginPerClient: 300 }
     const results = calculateScenario(inputs)
 
     expect(results.maximumAcceptableCpa).toBe(0)
