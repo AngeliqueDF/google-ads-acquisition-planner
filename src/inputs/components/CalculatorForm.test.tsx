@@ -19,7 +19,7 @@ const inputs: CalculatorInputs = {
 
 const mobileResultPanelPattern = /class="mobile-result-panel"/g
 
-function renderForm(activeStep: StepNumber): string {
+function renderForm(): string {
   const results = calculateScenario(inputs)
   return renderToStaticMarkup(
     <MantineProvider>
@@ -27,7 +27,6 @@ function renderForm(activeStep: StepNumber): string {
         formValues={initialFormValues}
         inputs={inputs}
         results={results}
-        activeStep={activeStep}
         onNumberChange={() => {}}
         onPeriodChange={() => {}}
       />
@@ -43,15 +42,12 @@ function getStepSectionMarkup(formMarkup: string, step: StepNumber): string | un
 }
 
 describe('mobile specialist summary placement', () => {
-  it.each([1, 2, 3, 4] as const)(
-    'renders the sidebar card only inside active step %s',
-    (activeStep: StepNumber) => {
-      const formMarkup = renderForm(activeStep)
-      const activeSection = getStepSectionMarkup(formMarkup, activeStep)
+  it.each([1, 2, 3, 4] as const)('renders the card inline in step %s', (step: StepNumber) => {
+    const formMarkup = renderForm()
+    const stepSection = getStepSectionMarkup(formMarkup, step)
 
-      expect(formMarkup.match(mobileResultPanelPattern)).toHaveLength(1)
-      expect(activeSection).toContain('mobile-result-panel')
-      expect(activeSection).toContain(`aria-label="Résumé de l’étape ${activeStep}"`)
-    },
-  )
+    expect(formMarkup.match(mobileResultPanelPattern)).toHaveLength(4)
+    expect(stepSection).toContain('mobile-result-panel')
+    expect(stepSection).toContain(`aria-label="Résumé de l’étape ${step}"`)
+  })
 })
