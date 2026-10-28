@@ -179,6 +179,11 @@ h1 {
   max-width: 700px;
   justify-self: end;
 }
+.tool-intro .example-note {
+  display: block;
+  color: var(--gray-7);
+  font-size: var(--font-size-0);
+}
 .calculator-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.42fr) minmax(320px, 0.78fr);

@@ -5,11 +5,11 @@ export const initialFormValues: FormValues = {
   targetClients: '10',
   period: 'month',
   averageRevenuePerClient: '600',
-  grossMarginPercent: '30',
+  grossMarginPercent: '50',
   retainedMarginPerClient: '120',
-  closingRateOutOfTen: '1',
-  landingPageConversionPercent: '5',
-  costPerClick: '2.5',
+  closingRateOutOfTen: '2',
+  landingPageConversionPercent: '4',
+  costPerClick: '2',
 }
 
 function toNumber(value: string): number {
